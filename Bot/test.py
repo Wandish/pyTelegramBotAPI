@@ -28,7 +28,7 @@ def main_menu (message):
     btn1 = types.KeyboardButton(text = "\U0001f198Отримати допомогу")
     btn2 = types.KeyboardButton(text ="\U0001f64fДопомогти проекту")
     btn3 = types.KeyboardButton(text ="\U0001f3ebОсвітні заходи")
-    btn4 = types.KeyboardButton(text="\U0001f9d1\U0001f3fb\u200D\U0001f91d\u200D\U0001f9d1\U0001f3fbПро нас")
+    btn4 = types.KeyboardButton(text="\U0001faf6Про нас")
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, text='\U0001f447Для пересування по боту натискайте кнопки⌨️',reply_markup=kb)
 
@@ -52,12 +52,12 @@ def legal_consultation(message):
     btn1 = types.InlineKeyboardButton(text='\U0001fa96Я військовослужбовець', callback_data='Військовослужбовець')
     btn2 = types.InlineKeyboardButton(text='🧳Я внутрішньо переміщена особа', callback_data='Внутрішньо переміщена особа')
     btn3 = types.InlineKeyboardButton(text='😢Я людина, яка постраждала від війни', callback_data='Людина, яка постраждала від війни')
-    btn4 = types.InlineKeyboardButton(text='😢Я волонтер', callback_data='Волонтер')
+    btn4 = types.InlineKeyboardButton(text='🤲Я волонтер', callback_data='Волонтер')
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
- # Функция проверки инлайн кнопок на нажатие
+ # Функция проверки инлайн кнопок на нажатие и переменная, ЮР-Консультации
 chosen = False
-var_button_legal = ''
+var_button_legal = None
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     global chosen
@@ -106,16 +106,22 @@ def humanitarian_dream_help_zsy(message,button,button_legal=None):
 def handle_next_step(message):
 #Обнуление переменных
     global chosen
+    global var_button_legal
     chosen = False
     if message.text == '👨‍⚖️Юридична консультація':
+        var_button_legal = None
         pass
     elif message.text == '🙏Реалізувати Вашу мрію':
+        var_button_legal = None
         pass
     elif message.text == '\U0001fa96Допомога для ЗСУ':
+        var_button_legal = None
         pass
     elif message.text == '📦Гуманітарна допомога':
+        var_button_legal = None
         pass
     elif message.text == '\u23EAВ головне меню':
+        var_button_legal = None
         main_menu(message)
     else:
         humanitarian_dream_help_zsy(message, button=var_button, button_legal=var_button_legal)
@@ -149,11 +155,11 @@ def help_zsy(message):
 @bot.message_handler(func=lambda message: message.text == "\U0001f3ebОсвітні заходи")
 def educational_activities(message):
     bot.send_chat_action(message.chat.id, 'typing')
-    sent = bot.send_message(message.chat.id, text = text.educational_activities, parse_mode='HTML')
+    bot.send_message(message.chat.id, text = text.educational_activities, parse_mode='HTML')
 #------------ конец----Освітні заходи-----
 
 #------------ Меню - Про нас
-@bot.message_handler(func=lambda message: message.text == "\U0001f9d1\U0001f3fb\u200D\U0001f91d\u200D\U0001f9d1\U0001f3fbПро нас")
+@bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас")
 def menu_about_us (message):
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")

@@ -57,7 +57,7 @@ def legal_consultation(message):
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
  # Функция проверки инлайн кнопок на нажатие и переменная, ЮР-Консультации
 chosen = False
-var_button_legal = ''
+var_button_legal = None
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     global chosen
@@ -106,16 +106,22 @@ def humanitarian_dream_help_zsy(message,button,button_legal=None):
 def handle_next_step(message):
 #Обнуление переменных
     global chosen
+    global var_button_legal
     chosen = False
     if message.text == '👨‍⚖️Юридична консультація':
+        var_button_legal = None
         pass
     elif message.text == '🙏Реалізувати Вашу мрію':
+        var_button_legal = None
         pass
     elif message.text == '\U0001fa96Допомога для ЗСУ':
+        var_button_legal = None
         pass
     elif message.text == '📦Гуманітарна допомога':
+        var_button_legal = None
         pass
     elif message.text == '\u23EAВ головне меню':
+        var_button_legal = None
         main_menu(message)
     else:
         humanitarian_dream_help_zsy(message, button=var_button, button_legal=var_button_legal)
@@ -149,7 +155,7 @@ def help_zsy(message):
 @bot.message_handler(func=lambda message: message.text == "\U0001f3ebОсвітні заходи")
 def educational_activities(message):
     bot.send_chat_action(message.chat.id, 'typing')
-    sent = bot.send_message(message.chat.id, text = text.educational_activities, parse_mode='HTML')
+    bot.send_message(message.chat.id, text = text.educational_activities, parse_mode='HTML')
 #------------ конец----Освітні заходи-----
 
 #------------ Меню - Про нас
