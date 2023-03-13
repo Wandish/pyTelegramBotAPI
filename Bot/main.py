@@ -28,7 +28,7 @@ def main_menu (message):
     btn1 = types.KeyboardButton(text = "\U0001f198Отримати допомогу")
     btn2 = types.KeyboardButton(text ="\U0001f64fДопомогти проекту")
     btn3 = types.KeyboardButton(text ="\U0001f3ebОсвітні заходи")
-    btn4 = types.KeyboardButton(text="\U0001f9d1\U0001f3fb\u200D\U0001f91d\u200D\U0001f9d1\U0001f3fbПро нас")
+    btn4 = types.KeyboardButton(text="\U0001faf6Про нас")
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, text='\U0001f447Для пересування по боту натискайте кнопки⌨️',reply_markup=kb)
 
@@ -153,7 +153,7 @@ def educational_activities(message):
 #------------ конец----Освітні заходи-----
 
 #------------ Меню - Про нас
-@bot.message_handler(func=lambda message: message.text == "\U0001f9d1\U0001f3fb\u200D\U0001f91d\u200D\U0001f9d1\U0001f3fbПро нас")
+@bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас")
 def menu_about_us (message):
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")
