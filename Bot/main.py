@@ -52,11 +52,12 @@ def legal_consultation(message):
     btn1 = types.InlineKeyboardButton(text='\U0001fa96Я військовослужбовець', callback_data='Військовослужбовець')
     btn2 = types.InlineKeyboardButton(text='🧳Я внутрішньо переміщена особа', callback_data='Внутрішньо переміщена особа')
     btn3 = types.InlineKeyboardButton(text='😢Я людина, яка постраждала від війни', callback_data='Людина, яка постраждала від війни')
-    btn4 = types.InlineKeyboardButton(text='😢Я волонтер', callback_data='Волонтер')
+    btn4 = types.InlineKeyboardButton(text='🤲Я волонтер', callback_data='Волонтер')
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
- # Функция проверки инлайн кнопок на нажатие
+ # Функция проверки инлайн кнопок на нажатие и переменная, ЮР-Консультации
 chosen = False
+var_button_legal = ''
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     global chosen
@@ -87,7 +88,7 @@ def humanitarian_dream_help_zsy(message,button,button_legal=None):
     # Добавляем новые данные в последнюю строку
     sheet.cell(row=last_row, column=1, value=yest_datetime)
     sheet.cell(row=last_row, column=2, value=button_legal)
-    sheet.cell(row=last_row, column=3, value=button)
+    sheet.cell(row=last_row, column=3, value=var_button)
     sheet.cell(row=last_row, column=4, value=message.text)
     sheet.cell(row=last_row, column=5, value=message.from_user.first_name)
     sheet.cell(row=last_row, column=6, value=message.from_user.last_name)
@@ -103,6 +104,9 @@ def humanitarian_dream_help_zsy(message,button,button_legal=None):
     chosen = False
 #Обработка, чтобы не отправлялись кнопки в сообщениях
 def handle_next_step(message):
+#Обнуление переменных
+    global chosen
+    chosen = False
     if message.text == '👨‍⚖️Юридична консультація':
         pass
     elif message.text == '🙏Реалізувати Вашу мрію':
@@ -286,6 +290,12 @@ def social_networks (message):
     button_back_about_us (message)
 #------------конец------ Меню - про нас------
 
+#------------Меню --Допомогти проекту------
+@bot.message_handler(func=lambda message: message.text == "\U0001f64fДопомогти проекту")
+def help_project(message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    bot.send_message(message.chat.id, text= "🧑‍💻 Кнопка в розробці")
+#------------конец--Допомогти проекту------
 # Обработка сообщений
 @bot.message_handler(content_types=['text'])
 def word_processing(message):
