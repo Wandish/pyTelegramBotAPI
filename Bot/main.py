@@ -155,8 +155,8 @@ def menu_about_us (message):
     btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")
     btn2 = types.KeyboardButton(text = "👪Наша команда")
     btn3 = types.KeyboardButton(text = "🥇Наші досягнення")
-    btn4 = types.KeyboardButton(text = "\u23EAВ головне меню")
-    btn5 = types.KeyboardButton(text = "💬Ми в соціальних мережах")
+    btn4 = types.KeyboardButton(text = "💬Ми в соціальних мережах")
+    btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")
     kb.add(btn1, btn2, btn3, btn4,btn5)
     bot.send_message(message.chat.id, text='\U0001f447Для пересування по боту натискайте кнопки⌨️',reply_markup=kb)
 #Кнопки возврата в меню: Про нас и Главное меню
