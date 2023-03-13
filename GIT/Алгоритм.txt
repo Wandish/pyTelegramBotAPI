@@ -1,0 +1,11 @@
+git clone https://github.com/Wandish/My_Telebot.git
+
+git add * или .
+
+git commit -m "name"
+
+Отправить на удаленный  репозиторий
+git push origin main 
+
+Получить с удаленного репозитория
+git pull origin main

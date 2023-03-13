@@ -1,0 +1,9 @@
+Конфигурация
+git config --global user.name “Artem Kress“
+git config --global user.email artemkress1@gmail.com
+
+Установка редактора
+git config --global core.editor notepad.exe
+
+Проверка настроек
+git config --list

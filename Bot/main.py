@@ -48,7 +48,6 @@ def main_help_project (message):
 def legal_consultation(message):
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text = text.legal_consultation, parse_mode='HTML')
-
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1 = types.InlineKeyboardButton(text='\U0001fa96Я військовослужбовець', callback_data='Військовослужбовець')
     btn2 = types.InlineKeyboardButton(text='🧳Я внутрішньо переміщена особа', callback_data='Внутрішньо переміщена особа')
@@ -56,11 +55,27 @@ def legal_consultation(message):
     btn4 = types.InlineKeyboardButton(text='😢Я волонтер', callback_data='Волонтер')
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
- 
-    # sent = bot.send_message(message.chat.id, "📝Опишіть Вашу ситуацію, яка потребує вирішення, одним повідомленням.")
-    # bot.register_next_step_handler(sent, review_legal_consultation)
+ # Функция проверки инлайн кнопок на нажатие
+chosen = False
+@bot.callback_query_handler(func=lambda call: True)
+def callback_query(call):
+    global chosen
+    global var_button_legal
+    global var_button
+    if not chosen:
+        bot.answer_callback_query(callback_query_id=call.id) 
+        var_button = call.data
+        if call.data != None:
+            var_button_legal = '👨‍⚖️Юридична консультація'
+            sent = bot.send_message(call.message.chat.id, text = text.your_situation, parse_mode='HTML')
+            bot.register_next_step_handler(sent, handle_next_step)
+            chosen = True
+        else:
+            legal_consultation(call.message)
+    else:
+        bot.answer_callback_query(callback_query_id=call.id, text="Ви вже зробили вибір!")  
 #Отправка в Эксельку
-def review_legal_consultation(message):
+def humanitarian_dream_help_zsy(message,button,button_legal=None):
     # Загружаем эксельку
     wb = load_workbook('request.xlsx')
     # Открываем
@@ -71,7 +86,7 @@ def review_legal_consultation(message):
     yest_datetime = datetime.datetime.now()
     # Добавляем новые данные в последнюю строку
     sheet.cell(row=last_row, column=1, value=yest_datetime)
-    sheet.cell(row=last_row, column=2, value="👨‍⚖️Юридична консультація")
+    sheet.cell(row=last_row, column=2, value=button_legal)
     sheet.cell(row=last_row, column=3, value=button)
     sheet.cell(row=last_row, column=4, value=message.text)
     sheet.cell(row=last_row, column=5, value=message.from_user.first_name)
@@ -79,70 +94,51 @@ def review_legal_consultation(message):
     sheet.cell(row=last_row, column=7, value=message.from_user.username)
     sheet.cell(row=last_row, column=8, value=message.chat.id)
     # Сохраняем изменения в файл
-    wb.save('request.xlsx')
-    bot.send_message(message.chat.id, text=text.thank_contacting)  
-
-#Флаги
-button_pressed = {}
-described = False
-#Функция отлова кнопок
-@bot.callback_query_handler(func=lambda call: True)
-def callback_query(call):
-    global described
-    global button
-    button = call.data
-    # Строка нужна для того, чтобы бот отправил подтверждение обработки callback-запроса.
-    bot.answer_callback_query(callback_query_id=call.id) 
-    if button != None:
-        if button_pressed.get(call.id, False):
-            # Кнопка уже была нажата, ничего не делаем
-            pass
-        else:
-            # Кнопка еще не нажималась, отправляем сообщение (если еще не отправляли)
-            if not described:
-                described = True
-                sent = bot.send_message(call.message.chat.id, text = text.your_situation, parse_mode='HTML')
-                bot.register_next_step_handler(sent, review_legal_consultation)
-#Отправка в Эксельку
-def humanitarian_dream_help_zsy(message,button):
-    # Загружаем эксельку
-    wb = load_workbook('request.xlsx')
-    # Открываем
-    sheet = wb.active
-    # Находим последнюю строку с данными
-    last_row = sheet.max_row + 1
-    #Текущее время
-    yest_datetime = datetime.datetime.now()
-    # Добавляем новые данные в последнюю строку
-    sheet.cell(row=last_row, column=1, value=yest_datetime)
-    sheet.cell(row=last_row, column=2, value=button)
-    sheet.cell(row=last_row, column=3, value="")
-    sheet.cell(row=last_row, column=4, value=message.text)
-    sheet.cell(row=last_row, column=5, value=message.from_user.first_name)
-    sheet.cell(row=last_row, column=6, value=message.from_user.last_name)
-    sheet.cell(row=last_row, column=7, value=message.from_user.username)
-    sheet.cell(row=last_row, column=8, value=message.chat.id)
-    # Сохраняем изменения в файл
-    wb.save('request.xlsx')
-    bot.send_message(message.chat.id, text=text.thank_contacting)  
+    wb.save('request.xlsx') 
+    bot.send_message(message.chat.id, text=text.thank_contacting)
+#Обнуление переменных
+    global var_button_legal
+    var_button_legal = None 
+    global chosen
+    chosen = False
+#Обработка, чтобы не отправлялись кнопки в сообщениях
+def handle_next_step(message):
+    if message.text == '👨‍⚖️Юридична консультація':
+        pass
+    elif message.text == '🙏Реалізувати Вашу мрію':
+        pass
+    elif message.text == '\U0001fa96Допомога для ЗСУ':
+        pass
+    elif message.text == '📦Гуманітарна допомога':
+        pass
+    elif message.text == '\u23EAВ головне меню':
+        main_menu(message)
+    else:
+        humanitarian_dream_help_zsy(message, button=var_button, button_legal=var_button_legal)
 #Гумонітарна допомога
 @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
 def Humanitarian_aid (message):
+    global var_button
+    var_button = '📦Гуманітарна допомога'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
-    bot.register_next_step_handler(sent, lambda message: humanitarian_dream_help_zsy(message, button='📦Гуманітарна допомога'))
+    bot.register_next_step_handler(sent, handle_next_step)
 #Реалізувати Вашу мрію
 @bot.message_handler(func=lambda message: message.text == "🙏Реалізувати Вашу мрію")
 def realize_your_dream(message):
+    global var_button
+    var_button = '🙏Реалізувати Вашу мрію'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.realize_your_dream, parse_mode='HTML')
-    bot.register_next_step_handler(sent, lambda message: humanitarian_dream_help_zsy(message, button='🙏Реалізувати Вашу мрію'))
+    bot.register_next_step_handler(sent, handle_next_step)
 #Допомога для ЗСУ
 @bot.message_handler(func=lambda message: message.text == "\U0001fa96Допомога для ЗСУ")
 def help_zsy(message):
+    global var_button
+    var_button = '\U0001fa96Допомога для ЗСУ'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.help_zsy, parse_mode='HTML')
-    bot.register_next_step_handler(sent, lambda message: humanitarian_dream_help_zsy(message, button='\U0001fa96Допомога для ЗСУ'))
+    bot.register_next_step_handler(sent, handle_next_step)
 #------------ конец----Меню Отримати допомогу-----
 
 #------------Меню Освітні заходи
