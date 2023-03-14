@@ -57,7 +57,7 @@ def legal_consultation(message):
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
  # Функция проверки инлайн кнопок на нажатие и переменная, ЮР-Консультации
 chosen = False
-var_button_legal = None
+var_button_legal = ''
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     global chosen
@@ -74,9 +74,9 @@ def callback_query(call):
         else:
             legal_consultation(call.message)
     else:
-        bot.answer_callback_query(callback_query_id=call.id, text="Ви вже зробили вибір!")  
+        bot.answer_callback_query(callback_query_id=call.id, text="Для зміни натискайте - 👨‍⚖️Юридична консультація")  
 #Отправка в Эксельку
-def humanitarian_dream_help_zsy(message, var_button, var_button_legal):
+def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
     # Загружаем эксельку
     wb = load_workbook('request.xlsx')
     # Открываем
@@ -98,38 +98,40 @@ def humanitarian_dream_help_zsy(message, var_button, var_button_legal):
     wb.save('request.xlsx') 
     bot.send_message(message.chat.id, text=text.thank_contacting)
 #Обнуление переменных
-    global var_button_legal
-    var_button_legal = None 
+    # global var_button_legal
+    # var_button_legal = None 
     global chosen
     chosen = False
 #Обработка, чтобы не отправлялись кнопки в сообщениях
 def handle_next_step(message):
 #Обнуление переменных
     global chosen
-    global var_button_legal
     chosen = False
+    global var_button_legal
     if message.text == '👨‍⚖️Юридична консультація':
         var_button_legal = None
-        pass
+        legal_consultation(message)
     elif message.text == '🙏Реалізувати Вашу мрію':
         var_button_legal = None
-        pass
+        realize_your_dream(message)
     elif message.text == '\U0001fa96Допомога для ЗСУ':
         var_button_legal = None
-        pass
+        help_zsy(message)
     elif message.text == '📦Гуманітарна допомога':
         var_button_legal = None
-        pass
+        Humanitarian_aid(message)
     elif message.text == '\u23EAВ головне меню':
         var_button_legal = None
         main_menu(message)
     else:
-        humanitarian_dream_help_zsy(message, var_button, var_button_legal)
+        humanitarian_dream_help_zsy(message,var_button_legal,var_button)
 #Гумонітарна допомога
 @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
 def Humanitarian_aid (message):
     global var_button
-    var_button = '📦Гуманітарна допомога'
+    var_button = None
+    global var_button_legal
+    var_button_legal = '📦Гуманітарна допомога'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
     bot.register_next_step_handler(sent, handle_next_step)
@@ -137,7 +139,9 @@ def Humanitarian_aid (message):
 @bot.message_handler(func=lambda message: message.text == "🙏Реалізувати Вашу мрію")
 def realize_your_dream(message):
     global var_button
-    var_button = '🙏Реалізувати Вашу мрію'
+    var_button = None
+    global var_button_legal
+    var_button_legal = '🙏Реалізувати Вашу мрію'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.realize_your_dream, parse_mode='HTML')
     bot.register_next_step_handler(sent, handle_next_step)
@@ -145,7 +149,9 @@ def realize_your_dream(message):
 @bot.message_handler(func=lambda message: message.text == "\U0001fa96Допомога для ЗСУ")
 def help_zsy(message):
     global var_button
-    var_button = '\U0001fa96Допомога для ЗСУ'
+    var_button = None
+    global var_button_legal
+    var_button_legal = '\U0001fa96Допомога для ЗСУ'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.help_zsy, parse_mode='HTML')
     bot.register_next_step_handler(sent, handle_next_step)
