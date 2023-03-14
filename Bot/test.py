@@ -46,6 +46,8 @@ def main_help_project (message):
 # Юридична консультація    
 @bot.message_handler(func=lambda message: message.text == "👨‍⚖️Юридична консультація")
 def legal_consultation(message):
+    global user_choice
+    user_choice = {}
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text = text.legal_consultation, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
@@ -56,25 +58,30 @@ def legal_consultation(message):
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
  # Функция проверки инлайн кнопок на нажатие и переменная, ЮР-Консультации
-chosen = False
-var_button_legal = ''
+# var_button_legal = ''
+# Создайте словарь, чтобы хранить выбранный ответ для каждого пользователя
+user_choice = {}
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
-    global chosen
     global var_button_legal
     global var_button
-    if not chosen:
-        bot.answer_callback_query(callback_query_id=call.id) 
-        var_button = call.data
-        if call.data != None:
-            var_button_legal = '👨‍⚖️Юридична консультація'
-            sent = bot.send_message(call.message.chat.id, text = text.your_situation, parse_mode='HTML')
-            bot.register_next_step_handler(sent, handle_next_step)
-            chosen = True
-        else:
-            legal_consultation(call.message)
+    chat_id = call.message.chat.id
+    # Проверяем, был ли выбран ответ для данного пользователя
+    if chat_id in user_choice:
+        bot.answer_callback_query(callback_query_id=call.id, text="Для зміни натискайте - 👨‍⚖️Юридична консультація")
+        return
+    # Сохраняем выбранный ответ для данного пользователя
+    user_choice[chat_id] = call.data
+    # Ваш код обработки выбора
+    bot.answer_callback_query(callback_query_id=call.id)
+    var_button = call.data
+    if call.data != None:
+        var_button_legal = '👨‍⚖️Юридична консультація'
+        sent = bot.send_message(chat_id, text=text.your_situation, parse_mode='HTML')
+        bot.register_next_step_handler(sent, handle_next_step)
     else:
-        bot.answer_callback_query(callback_query_id=call.id, text="Для зміни натискайте - 👨‍⚖️Юридична консультація")  
+        legal_consultation(call.message)
+
 #Отправка в Эксельку
 def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
     # Загружаем эксельку
@@ -100,13 +107,9 @@ def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
 #Обнуление переменных
     # global var_button_legal
     # var_button_legal = None 
-    global chosen
-    chosen = False
 #Обработка, чтобы не отправлялись кнопки в сообщениях
 def handle_next_step(message):
 #Обнуление переменных
-    global chosen
-    chosen = False
     global var_button_legal
     if message.text == '👨‍⚖️Юридична консультація':
         var_button_legal = None

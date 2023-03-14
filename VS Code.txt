@@ -3,6 +3,8 @@ Ctrl + левая мышь - посомтреть код типа данных
 TAB + Chrift - табуляция
 Chrift + TAB - убрать табуляцию
 CTRL + Y - отмета отмены
+CTRL + TAB + Chrift - Fold All - Скрыть все функции
+
 
 pip install - установить
 pip uninstall - удалить
