@@ -76,7 +76,7 @@ def callback_query(call):
     else:
         bot.answer_callback_query(callback_query_id=call.id, text="Ви вже зробили вибір!")  
 #Отправка в Эксельку
-def humanitarian_dream_help_zsy(message,button,button_legal=None):
+def humanitarian_dream_help_zsy(message, var_button, var_button_legal):
     # Загружаем эксельку
     wb = load_workbook('request.xlsx')
     # Открываем
@@ -87,7 +87,7 @@ def humanitarian_dream_help_zsy(message,button,button_legal=None):
     yest_datetime = datetime.datetime.now()
     # Добавляем новые данные в последнюю строку
     sheet.cell(row=last_row, column=1, value=yest_datetime)
-    sheet.cell(row=last_row, column=2, value=button_legal)
+    sheet.cell(row=last_row, column=2, value=var_button_legal)
     sheet.cell(row=last_row, column=3, value=var_button)
     sheet.cell(row=last_row, column=4, value=message.text)
     sheet.cell(row=last_row, column=5, value=message.from_user.first_name)
@@ -124,7 +124,7 @@ def handle_next_step(message):
         var_button_legal = None
         main_menu(message)
     else:
-        humanitarian_dream_help_zsy(message, button=var_button, button_legal=var_button_legal)
+        humanitarian_dream_help_zsy(message, var_button, var_button_legal)
 #Гумонітарна допомога
 @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
 def Humanitarian_aid (message):
