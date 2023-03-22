@@ -18,7 +18,7 @@ vadim_gatezh = '''<b>Вадим Гатеж
 
 В минулому молодіжний та студенський громадський діяч, засновник освітніх та соціальних проєктів. 
 
-З березня 2018 року по квітень 2020 року очолював Студентський парламент юридичного факультету ЧНУ імені Юрія Федьковича
+З березня 2018 року по квітень 2020 року очолював Студентський парламент юридичного факультету ЧНУ імені Юрія Федьковича.
 
 Засновник освітнього проєкту "Всеукраїнська школа молодого політика".
 
@@ -32,7 +32,7 @@ Lawyer, assistant consultant to the People's Deputy of Ukraine, adviser to a mem
 
 In the past, he was a youth and student public figure, founder of educational and social projects.
 
-From March 2018 to April 2020, he headed the Student Parliament of the Faculty of Law of the Yuriy Fedkovich ChNU
+From March 2018 to April 2020, he headed the Student Parliament of the Faculty of Law of the Yuriy Fedkovich ChNU.
 
 Founder of the educational project "All-Ukrainian School of Young Politicians".
 
@@ -80,29 +80,63 @@ anna_mironyuk = '''<b>Анна Миронюк
 
 Брала участь у реалізації проєктів, спрямованих на надання безоплатної правової допомоги населенню, за підтримки міжнародних організацій.
 
-Учасниця міжнародних змагань з судових дебатів'''
+Учасниця міжнародних змагань з судових дебатів.'''
+
+eng_anna_mironyuk = '''<b>Anna Mironyuk
+
+Head of the Legal Support Department of the Charitable Organization "Public Movement "Generation of Careless People".</b>
+
+Lawyer and certified mediator.
+
+Three years of professional experience as a legal consultant and attorney's assistant.
+
+Participated in the implementation of projects aimed at providing free legal assistance to the population, with the support of international organizations.
+
+Participant of international competitions in court debates.'''
 
 anastasia_merezhuk = '''<b>Анастасія Мережук
 
 Керівниця Департаменту освітнього розвитку Благодійної організації «Громадський рух «Покоління небайдужих».</b>
 
-Студентка юридичного факультету  Київського Національного Університету ім. Тараса Шевченка
+Студентка юридичного факультету  Київського Національного Університету ім. Тараса Шевченка.
 
 З початку війни займалась волонтерством у міжнародних організаціях: The Ukrainian House, Polsko-Ukraińskie Centrum Wolska, Caritas Polska.
 
-Співпрацювала з некомерційною організацією TechSoup 2021-2022
+Співпрацювала з некомерційною організацією TechSoup 2021-2022.
 
 З 2018 по 2021 рік брала участь в освітніх заходах, була членкинею команди активної молоді, учасницею та переможницею дебатних турнірів.'''
+
+eng_anastasia_merezhuk = '''<b>Anastasia Merezhuk
+
+Head of the Department of Educational Development of the Charitable Organization "Public Movement "Generation of Careless People".</b>
+
+A student of the Faculty of Law of the Kyiv National University named after Taras Shevchenko.
+
+Since the beginning of the war, she has been volunteering in international organizations: The Ukrainian House, Polsko-Ukraińskie Centrum Wolska, Caritas Polska.
+
+Collaborated with the non-profit organization TechSoup 2021-2022.
+
+From 2018 to 2021, she participated in educational events, was a member of the active youth team, a participant and winner of debate tournaments.'''
 
 anastasia_semenchuk = '''<b>Анастасія Семенчук
 
 Керівниця Департаменту соціальної допомоги Благодійної організації «Громадський рух «Покоління небайдужих». </b>
 
-Студентка юридичного факультету Чернівецького національного університету ім. Юрія Федьковича 
+Студентка юридичного факультету Чернівецького національного університету ім. Юрія Федьковича.
 
 Протягом 2019 - 2022 років була членкинею студентського парламенту та заступнецею голови Студентського парламенту юридичного факультету ЧНУ імені Юрія Федьковича, відповідала за соціальний напрямок.
 
 2019 - 2020 рр. була учасницею та однією з організаторів освітнього проєкту "Всеукраїнська школа молодого політика".'''
+
+eng_anastasia_semenchuk = '''<b>Anastasia Semenchuk
+
+Head of the Department of Social Assistance of the Charitable Organization "Public Movement "Generation of Caregivers". </b>
+
+Student of the Faculty of Law of the Chernivtsi National University named after Yury Fedkovych
+
+During 2019 - 2022, she was a member of the student parliament and the deputy head of the Student Parliament of the Faculty of Law of the Yuriy Fedkovich National University, responsible for the social direction.
+
+In 2019-2020, she was a participant and one of the organizers of the "All-Ukrainian School of Young Politicians" educational project.'''
 
 julia_birkova = '''<b>Юлія Биркова
 
@@ -115,6 +149,18 @@ julia_birkova = '''<b>Юлія Биркова
 В минулому працювала контент-менеджером та SMM-спеціалістом низки інтернет-магазинів з продажу товарів широкого вжитку. 
 
 В 2021 році закінчила Чернівецький національний університет ім. Ю. Федьковича за спеціальністю «Міжнародне право».'''
+
+eng_julia_birkova = '''<b>Yulia Birkova
+
+Head of the department of information direction of the Charitable organization "Public Movement "Generation of the Indifferent".</b>
+
+Lawyer, content manager, editor, SMM specialist.
+
+I work with international news agencies in the countries of Eastern Europe as a content manager, I help with the organization of interviews, coverage of objective events for foreign journalists on the territory of Ukraine. I advise international mass media and non-governmental organizations on managing social networks for the Ukrainian segment.
+
+In the past, she worked as a content manager and SMM specialist for a number of online stores selling consumer goods.
+
+In 2021, she graduated from the Chernivtsi National University named after Yu. Fedkovich, majoring in International Law.'''
 
 anastasia_shaporda = '''<b>Анастасія Шапорда</b>
 

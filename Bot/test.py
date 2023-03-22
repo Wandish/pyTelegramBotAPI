@@ -442,6 +442,7 @@ def educational_activities(message):
 #------------ Меню - Про нас
 @bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас" or message.text == "\U0001faf6About us")
 def menu_about_us (message):
+    bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -508,37 +509,52 @@ def osnovatel (message):
         bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
     button_back_about_us (message)
 #Контент - Команда
-@bot.message_handler(func=lambda message: message.text == "👪Наша команда")
+@bot.message_handler(func=lambda message: message.text == "👪Наша команда" or message.text == "👪Our team")
 def team (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     photo = open('image/team/mironuk.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.anna_mironyuk, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Facebook', url='https://www.facebook.com/anya.myroniuk')
     kb.add(btn1)
-    bot.send_message(message.chat.id, "Соціальна мережа", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_anna_mironyuk, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.anna_mironyuk, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
 
     photo = open('image/team/merezhuk.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.anastasia_merezhuk, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Instagram', url='https://www.instagram.com/merranst')
     kb.add(btn1)
-    bot.send_message(message.chat.id, "Соціальна мережа", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_anastasia_merezhuk, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.anastasia_merezhuk, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
 
     photo = open('image/team/semenchuk.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.anastasia_semenchuk, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Instagram', url='https://www.instagram.com/nastia_semenchuk')
     kb.add(btn1)
-    bot.send_message(message.chat.id, "Соціальна мережа", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_anastasia_semenchuk, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.anastasia_semenchuk, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
 
     photo = open('image/team/birkova.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.julia_birkova, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_julia_birkova, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.julia_birkova, parse_mode='HTML')
 
     photo = open('image/team/bagirov.jpg', 'rb')
     bot.send_photo(chat_id, photo)
