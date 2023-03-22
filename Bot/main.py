@@ -201,15 +201,7 @@ def help_zsy(message):
 @bot.message_handler(func=lambda message: message.text == "\U0001f64fДопомогти проекту" or message.text =="\U0001f64fHelp the project")
 def main_menu_donats (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "💰Фінансова допомога")
-        btn2 = types.KeyboardButton(text = "🧦Інша допомога")
-        btn3 = types.KeyboardButton(text = "❓На що буде спрямована ваша допомога")
-        btn4 = types.KeyboardButton(text = "\u23EAВ головне меню")  
-        kb.add(btn1, btn2, btn3, btn4)
-        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "💰Financial assistance")
         btn2 = types.KeyboardButton(text = "🧦Other assistance")
@@ -217,50 +209,49 @@ def main_menu_donats (message):
         btn4 = types.KeyboardButton(text = "\u23EATo main menu")  
         kb.add(btn1, btn2, btn3, btn4)
         bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "💰Фінансова допомога")
+        btn2 = types.KeyboardButton(text = "🧦Інша допомога")
+        btn3 = types.KeyboardButton(text = "❓На що буде спрямована ваша допомога")
+        btn4 = types.KeyboardButton(text = "\u23EAВ головне меню")  
+        kb.add(btn1, btn2, btn3, btn4)
+        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
 #Меню возврата в Допомогти проекту
 def menu_vozvrata_donats (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "\U0001f519Нaзад")  
-        btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")  
-        kb.add(btn1, btn2)
-        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "\U0001f519Bаck")
         btn2 = types.KeyboardButton(text = "\u23EATo main menu")  
         kb.add(btn1, btn2)
         bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
-#Меню возврата в Монобанка,Банк.рах.,кріпта
-def menu_vozvrata_mono_krypto (message):
-    chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
+    else:
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "\U0001f519Haзад")  
+        btn1 = types.KeyboardButton(text = "\U0001f519Нaзад")  
         btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")  
         kb.add(btn1, btn2)
         bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
+#Меню возврата в Монобанка,Банк.рах.,кріпта
+def menu_vozvrata_mono_krypto (message):
+    chat_id = message.chat.id
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "\U0001f519Back")  
         btn2 = types.KeyboardButton(text = "\u23EATo main menu")  
         kb.add(btn1, btn2)
         bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001f519Haзад")  
+        btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")  
+        kb.add(btn1, btn2)
+        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
 #Меню 💰Фінансова допомога-----
 @bot.message_handler(func=lambda message: message.text == "💰Фінансова допомога" or message.text =="💰Financial assistance")
 def menu_money (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "\U0001fad9Monobanka")
-        btn2 = types.KeyboardButton(text = "💳Банківські рахунки")
-        btn3 = types.KeyboardButton(text = "\U0001f519Нaзад")
-        btn4 = types.KeyboardButton(text = "\U0001fa99Криптовалюта")  
-        btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")  
-        kb.add(btn1, btn2, btn3, btn4, btn5)
-        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "\U0001fad9Monobanka")
         btn2 = types.KeyboardButton(text = "💳Bank account")
@@ -269,6 +260,15 @@ def menu_money (message):
         btn5 = types.KeyboardButton(text = "\u23EATo main menu")  
         kb.add(btn1, btn2, btn3, btn4, btn5)
         bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001fad9Monobanka")
+        btn2 = types.KeyboardButton(text = "💳Банківські рахунки")
+        btn3 = types.KeyboardButton(text = "\U0001f519Нaзад")
+        btn4 = types.KeyboardButton(text = "\U0001fa99Криптовалюта")  
+        btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")  
+        kb.add(btn1, btn2, btn3, btn4, btn5)
+        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
 #Меню --Моно банка
 @bot.message_handler(func=lambda message: message.text == "\U0001fad9Monobanka")
 def menu_mono (message):
@@ -279,16 +279,24 @@ def menu_mono (message):
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='\U0001fad9Monobanka', url='https://send.monobank.ua/jar/AMrMtk2Vz')
     kb.add(btn1)
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text.follow, reply_markup = kb)
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text.eng_follow, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text.follow, reply_markup = kb)
     menu_vozvrata_mono_krypto (message)
 #Меню 💳Банківські рахунки
 @bot.message_handler(func=lambda message: message.text == "💳Банківські рахунки" or message.text =="💳Bank account")
 def bank_accounts (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001f1fa\U0001f1f8USD")
+        btn2 = types.KeyboardButton(text = "\U0001f1ea\U0001f1faEUR")  
+        btn3 = types.KeyboardButton(text = "\U0001f519Back")
+        btn4 = types.KeyboardButton(text = "\u23EATo main menu")  
+        kb.add(btn1, btn2, btn3, btn4)
+        bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "\U0001f1fa\U0001f1e6UAN")
         btn2 = types.KeyboardButton(text = "\U0001f1fa\U0001f1f8USD")
@@ -297,29 +305,21 @@ def bank_accounts (message):
         btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")  
         kb.add(btn1, btn2, btn3, btn4, btn5)
         bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "\U0001f1fa\U0001f1f8USD")
-        btn2 = types.KeyboardButton(text = "\U0001f1ea\U0001f1faEUR")  
-        btn3 = types.KeyboardButton(text = "\U0001f519Back")
-        btn4 = types.KeyboardButton(text = "\u23EATo main menu")  
-        kb.add(btn1, btn2, btn3, btn4)
-        bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
 #Меню возврата с 💳Банківські рахунки
 def menu_vozvrata_bank_accounts (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "\U0001f519Назaд")  
-        btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")  
-        kb.add(btn1, btn2)
-        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "\U0001f519Baсk")  
         btn2 = types.KeyboardButton(text = "\u23EATo main menu")  
         kb.add(btn1, btn2)
         bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001f519Назaд")  
+        btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")  
+        kb.add(btn1, btn2)
+        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
 # Кнопка UAN
 @bot.message_handler(func=lambda message: message.text == "\U0001f1fa\U0001f1e6UAN")
 def button_uan (message):
@@ -331,20 +331,20 @@ def button_uan (message):
 def button_uan (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text = text.usd, parse_mode='HTML')
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text = text.eng_usd, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text = text.usd, parse_mode='HTML')
     menu_vozvrata_bank_accounts (message)
 #Кнопка EUR
 @bot.message_handler(func=lambda message: message.text == "\U0001f1ea\U0001f1faEUR")
 def button_uan (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text = text.eur, parse_mode='HTML')
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text = text.eng_eur, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text = text.eur, parse_mode='HTML')
     menu_vozvrata_bank_accounts (message)
 #Кнопка - Криптовалюта
 @bot.message_handler(func=lambda message: message.text == "\U0001fa99Криптовалюта" or message.text == "\U0001fa99Cryptocurrency")
@@ -357,19 +357,19 @@ def crypto (message):
 def your_help_is_straightened (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text = text.what_money_for, parse_mode='HTML')
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text = text.eng_what_money_for, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text = text.what_money_for, parse_mode='HTML')
     menu_vozvrata_donats (message)
 #🧦Інша допомога
 @bot.message_handler(func=lambda message: message.text == "🧦Інша допомога" or message.text == "🧦Other assistance")
 def other_help (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        sent = bot.send_message(message.chat.id, text = text.other_help_t, parse_mode='HTML')
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         sent = bot.send_message(message.chat.id, text = text.eng_other_help_t, parse_mode='HTML')
+    else:
+        sent = bot.send_message(message.chat.id, text = text.other_help_t, parse_mode='HTML')
     bot.register_next_step_handler(sent, ignor_button_other_help)
     menu_vozvrata_donats (message)
 #Обработка, чтобы не отправлялись кнопки в сообщениях
@@ -392,10 +392,10 @@ def ignor_button_other_help(message):
     elif message.content_type != 'text':
         bot.send_chat_action(message.chat.id, 'typing')
         chat_id = message.chat.id
-        if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-            bot.send_message(message.chat.id, text=text.help_project_not_understand, parse_mode='HTML')
-        else:
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
             bot.send_message(message.chat.id, text=text.eng_help_project_not_understand, parse_mode='HTML')
+        else:
+            bot.send_message(message.chat.id, text=text.help_project_not_understand, parse_mode='HTML')
         other_help (message)
     else:
         other_help_excel(message)
@@ -420,17 +420,16 @@ def other_help_excel (message):
     # bot.send_message(message.chat.id, text=text.thank_contacting)
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.button_driver)
-    #Отправка в ТГ канал уведомления
-        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fДопомогти проекту (proposal)")
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_thank_contacting, parse_mode='HTML')
         bot.send_message(message.chat.id, text=text.eng_button_driver)
     #Отправка в ТГ канал уведомления
         bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fHelp the project (proposal)")
-
+    else:
+        bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.button_driver)
+    #Отправка в ТГ канал уведомления
+        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fДопомогти проекту (proposal)")
 #------------ конец----Меню Допомогти проекту-----
 
 #------------Меню Освітні заходи
@@ -444,7 +443,9 @@ def educational_activities(message):
 @bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас" or message.text == "\U0001faf6About us")
 def menu_about_us (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text="🧑‍💻On development stage")
+    else:
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")
         btn2 = types.KeyboardButton(text = "👪Наша команда")
@@ -453,8 +454,6 @@ def menu_about_us (message):
         btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")
         kb.add(btn1, btn2, btn3, btn4,btn5)
         bot.send_message(message.chat.id, text=text.button_driver, reply_markup=kb)
-    else:
-        bot.send_message(message.chat.id, text="🧑‍💻On development stage")
 #Кнопки возврата в меню: Про нас и Главное меню
 def button_back_about_us (message):
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -606,10 +605,10 @@ def social_networks (message):
 def handle_files(message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text = text.ignor_no_text)
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text = text.eng_ignor_no_text)
+    else:
+        bot.send_message(message.chat.id, text = text.ignor_no_text)
 
 # Обработка сообщений
 @bot.message_handler(content_types=['text'])

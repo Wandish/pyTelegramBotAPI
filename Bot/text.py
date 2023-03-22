@@ -234,10 +234,10 @@ assistance_kherson_region = '''<b>Допомога жителям Херсонщ
 
 Жителі Новобериславського старостинського округу, що на Херсонщині, отримали чергову партію продуктів харчування. Сьогодні у мешканців прифронтових населених пунктів є велика потреба у такій допомозі, адже в їх селах, селищах, містах здебільшого не працюють магазини, де можна було б придбати необхідне. Ця допомога не була б доставлена без вашої підтримки. Творимо добрі справи разом і наближаємо нашу перемогу спільно.'''
 
-img_assistance_kherson_region = ["image/achievements/assistance_kherson_region_1.jpg.", 
-                                 "image/achievements/assistance_kherson_region_2.jpg.", 
-                                 "image/achievements/assistance_kherson_region_3.jpg.",
-                                 "image/achievements/assistance_kherson_region_4.jpg."]
+img_assistance_kherson_region = ["image/achievements/assistance_kherson_region_1.jpg", 
+                                 "image/achievements/assistance_kherson_region_2.jpg", 
+                                 "image/achievements/assistance_kherson_region_3.jpg",
+                                 "image/achievements/assistance_kherson_region_4.jpg"]
 
 legal_consultation = '''У зв'язку з тимчасово обмеженими ресурсами нашої команди, ми в змозі надати лише загальні юридичні консультації у відповідь на Ваші звернення. 
 
