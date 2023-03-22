@@ -24,6 +24,20 @@ vadim_gatezh = '''<b>Вадим Гатеж
 
 З травня 2020 по серпень 2020 року член Молодіжної ради при Чернівецькій обласній державній адміністрації.'''
 
+eng_vadim_gatezh = '''<b>Vadim Gatezh
+
+Founder and Chairman of the Charitable Organization "Generation of Careless Public Movement".</b>
+
+Lawyer, assistant consultant to the People's Deputy of Ukraine, adviser to a member of the permanent delegation of Ukraine to the Parliamentary Assembly of the Council of Europe.
+
+In the past, he was a youth and student public figure, founder of educational and social projects.
+
+From March 2018 to April 2020, he headed the Student Parliament of the Faculty of Law of the Yuriy Fedkovich ChNU
+
+Founder of the educational project "All-Ukrainian School of Young Politicians".
+
+From May 2020 to August 2020, a member of the Youth Council at the Chernivtsi Regional State Administration.'''
+
 pavlo_vysotsky = '''<b>Павло Висоцький
 
 Засновник та Заступник голови Благодійної організації «Громадський рух «Покоління небайдужих».</b>
@@ -39,6 +53,22 @@ pavlo_vysotsky = '''<b>Павло Висоцький
 Вступив до Академії  для здобуття наукового ступеня Доктора філософії.
 
 З початку 2021 року по березень 2022 року виконував обов'язки помічника- консультанта народного депутата України.'''
+
+eng_pavlo_vysotsky = '''<b>Pavlo Vysotskyi
+
+Founder and Deputy Chairman of the Charitable Organization "Public Movement "Generation of the Indifferent".</b>
+
+Lawyer. Postgraduate. Public figure.
+
+From September 2018 to May 2019, he worked as a lawyer's assistant.
+
+From June 2019 to July 2020, he worked as a civil servant in the court.
+
+After his release, he participated in educational and charity projects.
+
+Entered the Academy to obtain the Doctor of Philosophy degree.
+
+From the beginning of 2021 to March 2022, he served as an assistant consultant to the People's Deputy of Ukraine.'''
 
 anna_mironyuk = '''<b>Анна Миронюк
 
@@ -388,3 +418,7 @@ get_help_not_understand = '''🤷‍♂️Вибачте, але я розумі
 help_project_not_understand = '''🤷‍♂️Вибачте, але я розумію тільки текстові звернення, спробуйте ще раз!\U0001f447'''
 
 eng_help_project_not_understand = '''🤷‍♂️Sorry, but I only understand text appeals, try again!\U0001f447'''
+
+social_network = '''Соціальна мережа:'''
+
+eng_social_network = '''Social network:'''

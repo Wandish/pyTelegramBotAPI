@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 import text
 import datetime
 
-TOKEN = ''
+TOKEN = '5822918548:AAGAFXGs-vHdD7uJsNoKzTOKAURVflGWzYE'
 bot = telebot.TeleBot(TOKEN)
 
 #Создание словоря с iD и выбранным языком
@@ -430,7 +430,6 @@ def other_help_excel (message):
         bot.send_message(message.chat.id, text=text.button_driver)
     #Отправка в ТГ канал уведомления
         bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fДопомогти проекту (proposal)")
-
 #------------ конец----Меню Допомогти проекту-----
 
 #------------Меню Освітні заходи
@@ -445,7 +444,14 @@ def educational_activities(message):
 def menu_about_us (message):
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text="🧑‍💻On development stage")
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "🧑‍💼Our founders")
+        btn2 = types.KeyboardButton(text = "👪Our team")
+        btn3 = types.KeyboardButton(text = "🥇Our achievements")
+        btn4 = types.KeyboardButton(text = "💬We are on social networks")
+        btn5 = types.KeyboardButton(text = "\u23EATo main menu")
+        kb.add(btn1, btn2, btn3, btn4,btn5)
+        bot.send_message(message.chat.id, text=text.eng_button_driver, reply_markup=kb)
     else:
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")
@@ -457,33 +463,49 @@ def menu_about_us (message):
         bot.send_message(message.chat.id, text=text.button_driver, reply_markup=kb)
 #Кнопки возврата в меню: Про нас и Главное меню
 def button_back_about_us (message):
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    btn1 = types.KeyboardButton(text = "\U0001f519Назад")
-    btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")
-    kb.add(btn1, btn2)
-    bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
+    chat_id = message.chat.id
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001f519Bасk")
+        btn2 = types.KeyboardButton(text = "\u23EATo main menu")
+        kb.add(btn1, btn2)
+        bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001f519Назад")
+        btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")
+        kb.add(btn1, btn2)
+        bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
 #Контент - Основатели
-@bot.message_handler(func=lambda message: message.text == "🧑‍💼Наші засновники")
+@bot.message_handler(func=lambda message: message.text == "🧑‍💼Наші засновники" or message.text == "🧑‍💼Our founders")
 def osnovatel (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     photo = open('image/team/gatesh.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.vadim_gatezh, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Facebook', url='https://www.facebook.com/vadim.gatezh')
     btn2= types.InlineKeyboardButton(text='Instagram', url='https://www.instagram.com/v_gatezh')
     btn3= types.InlineKeyboardButton(text='Telegram channel', url='https://t.me/v_gatezh_novyny')
     kb.add(btn1, btn2, btn3)
-    bot.send_message(message.chat.id, "Соціальна мережа:", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_vadim_gatezh, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.vadim_gatezh, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
     
     photo = open('image/team/visotskiy.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.pavlo_vysotsky, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Facebook', url='https://www.facebook.com/profile.php?id=100015205090408')
     kb.add(btn1)
-    bot.send_message(message.chat.id, "Соціальна мережа:", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_pavlo_vysotsky, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.pavlo_vysotsky, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
     button_back_about_us (message)
 #Контент - Команда
 @bot.message_handler(func=lambda message: message.text == "👪Наша команда")
@@ -618,7 +640,7 @@ def word_processing(message):
     if message.text == "\u23EAВ головне меню" or message.text =="\u23EATo main menu":
         main_menu (message)
     #Назад с направления Про нас (все русские символы)
-    elif message.text == "\U0001f519Назад":
+    elif message.text == "\U0001f519Назад" or message.text == "\U0001f519Bасk":
         menu_about_us (message)
     #Назад с направления Оримати допомогу (первый символ анг. H)
     elif message.text == "\U0001f519Hазад":
