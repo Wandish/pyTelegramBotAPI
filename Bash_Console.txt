@@ -1,0 +1,9 @@
+pip install --user pyTelegramBotAPI = установка библиотеки пайтона
+
+CTRL + C = остановить процес
+
+cd boot = переход в папку
+python main.py = запуск
+
+Tasks
+python3.10 /home/Wandish/boot/main.py
