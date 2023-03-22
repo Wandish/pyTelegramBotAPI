@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 import text
 import datetime
 
-TOKEN = '5822918548:AAGAFXGs-vHdD7uJsNoKzTOKAURVflGWzYE'
+TOKEN = '6214187356:AAFpJfITT4_D3mXvpEW1mb1XMWGEdawU_YI'
 bot = telebot.TeleBot(TOKEN)
 
 #Создание словоря с iD и выбранным языком
@@ -36,17 +36,24 @@ def language_preservation(message):
 def share (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
-        bot.send_message(message.chat.id, text=text.zag_share, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.osn_share, parse_mode='HTML')
-    else:
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_zag_share, parse_mode='HTML')
         bot.send_message(message.chat.id, text=text.eng_osn_share, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.zag_share, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.osn_share, parse_mode='HTML')
 # Меню - Главное + команда
 @bot.message_handler(commands=['menu']) #Не переводиться на англ.
 def main_menu (message):
     chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text = text.eng_privetstvie)
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "\U0001f64fHelp the project")
+        btn2 = types.KeyboardButton(text="\U0001faf6About us")
+        kb.add(btn1, btn2)
+        bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+    else:
         bot.send_message(message.chat.id, text = text.privetstvie)
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
         btn1 = types.KeyboardButton(text = "\U0001f198Отримати допомогу")
@@ -55,13 +62,6 @@ def main_menu (message):
         btn4 = types.KeyboardButton(text="\U0001faf6Про нас")
         kb.add(btn1, btn2, btn3, btn4)
         bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-    else:
-        bot.send_message(message.chat.id, text = text.eng_privetstvie)
-        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton(text = "\U0001f64fHelp the project")
-        btn2 = types.KeyboardButton(text="\U0001faf6About us")
-        kb.add(btn1, btn2)
-        bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
 #------------ Меню Отримати допомогу-----
 #Меню Отримати допомогу
 @bot.message_handler(func=lambda message: message.text == "\U0001f198Отримати допомогу")
@@ -441,16 +441,20 @@ def educational_activities(message):
 #------------ конец----Освітні заходи-----
 
 #------------ Меню - Про нас
-@bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас")
+@bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас" or message.text == "\U0001faf6About us")
 def menu_about_us (message):
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")
-    btn2 = types.KeyboardButton(text = "👪Наша команда")
-    btn3 = types.KeyboardButton(text = "🥇Наші досягнення")
-    btn4 = types.KeyboardButton(text = "💬Ми в соціальних мережах")
-    btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")
-    kb.add(btn1, btn2, btn3, btn4,btn5)
-    bot.send_message(message.chat.id, text=text.button_driver, reply_markup=kb)
+    chat_id = message.chat.id
+    if chat_id in user_languages and user_languages[chat_id] == '🇺🇦Українська':
+        kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton(text = "🧑‍💼Наші засновники")
+        btn2 = types.KeyboardButton(text = "👪Наша команда")
+        btn3 = types.KeyboardButton(text = "🥇Наші досягнення")
+        btn4 = types.KeyboardButton(text = "💬Ми в соціальних мережах")
+        btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")
+        kb.add(btn1, btn2, btn3, btn4,btn5)
+        bot.send_message(message.chat.id, text=text.button_driver, reply_markup=kb)
+    else:
+        bot.send_message(message.chat.id, text="🧑‍💻On development stage")
 #Кнопки возврата в меню: Про нас и Главное меню
 def button_back_about_us (message):
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -628,10 +632,14 @@ def word_processing(message):
     #Назад с напрвления UAN,USD,EUR
     elif message.text == "\U0001f519Назaд" or message.text == "\U0001f519Baсk":
         bank_accounts(message)
+    #Ответ на любой другой текст
     else:
         bot.send_chat_action(message.chat.id, 'typing')
         chat_id = message.chat.id
-        bot.send_message(message.chat.id, text=text.nezrozymiv, parse_mode='HTML')
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_nezrozymiv, parse_mode='HTML')
+        else:
+            bot.send_message(message.chat.id, text=text.nezrozymiv, parse_mode='HTML')
         photo = open('image/nezrozymiv.jpg', 'rb')
         bot.send_photo(chat_id, photo)
 
