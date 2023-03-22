@@ -24,3 +24,7 @@
 /listgames - получить список ваших игр
 /editgame - редактировать игру
 /deletegame - удалить существующую игру
+
+start - Вибір мови/Language selection
+menu - Головне меню/Main menu
+share - Розповісти про нас/To share
