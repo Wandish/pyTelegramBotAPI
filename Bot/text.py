@@ -280,7 +280,11 @@ https://t.me/Generation_of_the_Careless_bot
 
 help_points_of_invincibility = '''<b>Допомога пунктам незламності</b>
 
-Передано десятки пакунків гуманітарної допомоги (їжа, ліки, одяг) на запити внутрішньо переміщених осіб, які вони нам залишають у нашому чат-боті та соціальних мережах'''
+Передано десятки пакунків гуманітарної допомоги (їжа, ліки, одяг) на запити внутрішньо переміщених осіб, які вони нам залишають у нашому чат-боті та соціальних мережах.'''
+
+eng_help_points_of_invincibility = '''<b>Help points of invincibility</b>
+
+Dozens of humanitarian aid packages (food, medicine, clothing) were handed over in response to the requests of internally displaced persons, which they leave for us in our chatbot and social networks.'''
 
 img_invincibility = ["image/achievements/invincibility_1.jpeg", 
                      "image/achievements/invincibility_2.jpeg", 
@@ -294,6 +298,10 @@ img_invincibility = ["image/achievements/invincibility_1.jpeg",
 trip_to_donetsk_region = '''<b>Поїздка в Донецьку область</b>
 
 Здійснено поїздку у звільненні населені пункти Донецької області, де передано 15 тонн гуманітарної допомоги (їжа, ліки, одяг) нашим бійцям Збройних сил України та жителям, які проживають у Ямполі, Краматорську, Торському, Лимані та інших н.п.'''
+
+eng_trip_to_donetsk_region = '''<b>A trip to the Donetsk region</b>
+
+A trip was made to the liberated settlements of the Donetsk region, where 15 tons of humanitarian aid (food, medicine, clothes) were handed over to our soldiers of the Armed Forces of Ukraine and residents living in Yampol, Kramatorsk, Torskyi, Lyman and others, etc.'''
 
 img_donetsk =["image/achievements/donetsk_1.jpeg", 
               "image/achievements/donetsk_2.jpeg", 
@@ -323,6 +331,23 @@ herson = '''<b>Обігрів населених пунктів Херсонщи
 
 <b>Наближаємо перемогу разом!</b>💪🏻'''
 
+eng_herson = '''<b>Heating of populated areas of Kherson Oblast</b>
+
+Thanks to your donations, the help of benefactors, and in cooperation with the charity organization <b>“Blessing for people”</b>, we did it.
+
+During the trip, <b>12</b> tons of food and medicine were handed over to servicemen of the Armed Forces of Ukraine, the Derprikordonsluzhba and residents of the liberated settlements of Urozhane, Tomarine, Novy Bereslav.
+
+With the collected amount of funds within the limits of the recent donation, we purchased:
+
+🔋Diesel electric generator;
+🔥<b>30</b> heaters with gas cylinders;
+🧋<b>10</b> thousand tip sets for the heating point at the Kherson railway station (glasses and tea bags);
+🚚Logistics of a truck for the transportation of food products is provided.
+
+We would like to express our special thanks for the support of the driver Yuriy Kapitanyuk, benefactors Yevgeny Kupriya, Dmytro Gatezh, Stepan Gatezh, Kateryna Moisei, Ivan Kovalchuk, Volodymyr Galchuk, Dmytro Klevchuk and all others. Without you, this would not have happened.
+
+<b>We are approaching victory together!</b>💪🏻'''
+
 img_herson =["image/achievements/herson_1.jpg", 
              "image/achievements/herson_2.jpg", 
              "image/achievements/herson_3.jpg",
@@ -335,6 +360,10 @@ rana = '''<b>«RANA UA»</b>
 
 БО «Покоління небайдужих» стала партнером благодійного проєкту <b>«RANA UA»</b>, який покликаний зібрати кошти на будівництво інноваційного реабілітаційного хабу «Захисник» – для військових, які отримали травми, пов’язані з ампутацією. Наша комадна БО «Покоління небайдужих» виставила на лот надзвичайно цінну і символічну річ — прапор України, який підписаний Головнокомандувачем ЗСУ Валерієм Залужним. Кошти благодійників за наданий нами лот будуть спрямовані для будівництва реабілітаційного центру для наших захисників.'''
 
+eng_rana = '''<b>"RANA UA"</b>
+
+BO "Generation of the Careless" became a partner of the charity project <b>"RANA UA"</b>, which is designed to raise funds for the construction of the innovative rehabilitation hub "Defender" - for military personnel who have received injuries related to amputation. Our team BO "Generation of the Caring" put on the lot an extremely valuable and symbolic thing - the flag of Ukraine, which was signed by the Commander-in-Chief of the Armed Forces of Ukraine Valery Zaluzhny. Funds from benefactors for the lot provided by us will be directed to the construction of a rehabilitation center for our defenders.'''
+
 img_rana = ["image/achievements/rana_1.jpeg", 
             "image/achievements/rana_2.jpeg", 
             "image/achievements/rana_3.jpeg"]
@@ -342,6 +371,10 @@ img_rana = ["image/achievements/rana_1.jpeg",
 blessing_for_people = '''<b>«Blessing for people</b>»
 
 Наша команда БО «Покоління небайдужих», за сприяння БО <b>«Blessing for people»</b>, вже неодноразово передає захисникам України військову амуніцію. Так, нещодавно десяток бронежилетів та плитоносок були відправлені українським бійцям, що боронять нашу державу. Кошти благодійників за наданий нами лот будуть спрямовані для будівництва реабілітаційного центру для наших захисників.'''
+
+eng_blessing_for_people = '''<b>"Blessing for people</b>"
+
+Our team of the BO "Generations of the Indifferent", with the assistance of the BO <b>"Blessing for people"</b>, has already repeatedly handed over military ammunition to the defenders of Ukraine. Yes, recently a dozen body armor and plate carriers were sent to Ukrainian soldiers defending our state. Funds from benefactors for the lot provided by us will be directed to the construction of a rehabilitation center for our defenders.'''
 
 img_blessing_for_people = ["image/achievements/blessing_1.jpeg", 
                            "image/achievements/blessing_2.jpeg", 
@@ -352,12 +385,20 @@ help_to_the_needy = '''<b>Допомога нужденним</b>
 
 Наша команда продовжує допомагати тим, хто цього потребує! Нещодавно, за підтримки благодійників, передали ноутбук для навчання сину воїна, який загинув. Інформацію про таку потребу направили нам наші колеги. На жаль, це не поверне втрату батька, проте хоча б трішки зробить хлопчика щасливішим. Раді бути корисними, разом до перемоги!'''
 
+eng_help_to_the_needy = '''<b>Helping the needy</b>
+
+Our team continues to help those in need! Recently, with the support of benefactors, a laptop was given to the son of a soldier who died. Our colleagues sent us information about this need. Unfortunately, this will not bring back the loss of his father, but it will at least make the boy a little happier. Glad to be useful, together to victory!'''
+
 img_help_to_the_needy = ["image/achievements/help_needy_1.jpeg", 
                          "image/achievements/help_needy_2.jpeg"]
 
 assistance_kherson_region = '''<b>Допомога жителям Херсонщини</b>
 
 Жителі Новобериславського старостинського округу, що на Херсонщині, отримали чергову партію продуктів харчування. Сьогодні у мешканців прифронтових населених пунктів є велика потреба у такій допомозі, адже в їх селах, селищах, містах здебільшого не працюють магазини, де можна було б придбати необхідне. Ця допомога не була б доставлена без вашої підтримки. Творимо добрі справи разом і наближаємо нашу перемогу спільно.'''
+
+eng_assistance_kherson_region = '''<b>Help to residents of Kherson Oblast</b>
+
+Residents of Novoberislavskyi Starostynsky District, Kherson Oblast, received another batch of food products. Today, the residents of the front-line settlements have a great need for such help, because in their villages, towns, and cities there are mostly no shops where you can buy what you need. This assistance would not have been delivered without your support. Let's do good things together and bring our victory closer together.'''
 
 img_assistance_kherson_region = ["image/achievements/assistance_kherson_region_1.jpg", 
                                  "image/achievements/assistance_kherson_region_2.jpg", 

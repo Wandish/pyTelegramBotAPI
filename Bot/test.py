@@ -596,7 +596,7 @@ def team (message):
 
     button_back_about_us (message)
 #Контент - Достижения
-@bot.message_handler(func=lambda message: message.text == "🥇Наші досягнення")
+@bot.message_handler(func=lambda message: message.text == "🥇Наші досягнення" or message.text == "🥇Our achievements")
 def achievements (message):
     bot.send_chat_action(message.chat.id, 'typing')
     photo_paths = text.img_invincibility
@@ -606,41 +606,63 @@ def achievements (message):
     #     with open(path, "rb") as f:
     #         media_group.append(telebot.types.InputMediaPhoto(f.read()))
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.help_points_of_invincibility, parse_mode='HTML')
+    chat_id = message.chat.id
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_help_points_of_invincibility, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.help_points_of_invincibility, parse_mode='HTML')
 
     photo_paths = text.img_donetsk
     media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.trip_to_donetsk_region, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_trip_to_donetsk_region, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.trip_to_donetsk_region, parse_mode='HTML')
 
     photo_paths = text.img_herson
     media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.herson, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_herson, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.herson, parse_mode='HTML')
 
     photo_paths = text.img_rana
     media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.rana, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_rana, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.rana, parse_mode='HTML')
 
     photo_paths = text.img_blessing_for_people
     media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.blessing_for_people, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_blessing_for_people, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.blessing_for_people, parse_mode='HTML')
 
     photo_paths = text.img_help_to_the_needy
     media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.help_to_the_needy, parse_mode='HTML')
-
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+      bot.send_message(message.chat.id, text=text.eng_help_to_the_needy, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.help_to_the_needy, parse_mode='HTML')
+        
     photo_paths = text.img_assistance_kherson_region
     media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
-    bot.send_message(message.chat.id, text=text.assistance_kherson_region, parse_mode='HTML')
-            
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_assistance_kherson_region, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.assistance_kherson_region, parse_mode='HTML')
+
     button_back_about_us (message)
 #Контент - Соц.сетях   
-@bot.message_handler(func=lambda message: message.text == "💬Ми в соціальних мережах")
+@bot.message_handler(func=lambda message: message.text == "💬Ми в соціальних мережах" or message.text == "💬We are on social networks")
 def social_networks (message):
     bot.send_chat_action(message.chat.id, 'typing')
     kb = types.InlineKeyboardMarkup(row_width=1)
@@ -649,7 +671,11 @@ def social_networks (message):
     btn3= types.InlineKeyboardButton(text='Instagram', url='https://www.instagram.com/caringgeneration_in_ua/')
     btn4= types.InlineKeyboardButton(text='Telegram channel', url='https://t.me/caringgeneration_in_ua')
     kb.add(btn1, btn2, btn3, btn4)
-    bot.send_message(message.chat.id, "Соціальна мережа:", reply_markup = kb)
+    chat_id = message.chat.id
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
     button_back_about_us (message)
 #------------конец------ Меню - про нас------
 
