@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 import text
 import datetime
 
-TOKEN = '5822918548:AAGAFXGs-vHdD7uJsNoKzTOKAURVflGWzYE'
+TOKEN = '6214187356:AAFpJfITT4_D3mXvpEW1mb1XMWGEdawU_YI'
 bot = telebot.TeleBot(TOKEN)
 
 #Создание словоря с iD и выбранным языком
