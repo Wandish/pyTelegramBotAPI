@@ -3,9 +3,31 @@ from telebot import types
 from openpyxl import load_workbook
 import text
 import datetime
+import logging
+import os
 
 TOKEN = '5822918548:AAGAFXGs-vHdD7uJsNoKzTOKAURVflGWzYE'
 bot = telebot.TeleBot(TOKEN)
+#--Логи
+logger = telebot.logger
+# logc = logger.critical
+# loge = logger.error
+# logw = logger.warning
+logi = logger.info
+# logd = logger.debug
+
+formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+'%(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
+telebot.console_output_handler.setFormatter(formatter)
+
+if not os.path.exists("logs"):
+    os.mkdir("logs")
+fh = logging.FileHandler("logs/" + datetime.datetime.now().strftime(" %Y.%m.%d-%H.%M.%S") + ".log", encoding="utf-8")
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+logger.setLevel(logging.INFO)    # уровни протокалирования
+logi("Запуск") # метка запуска
+#--конец логов
 
 #Создание словоря с iD и выбранным языком
 user_languages = {}
@@ -692,6 +714,7 @@ def handle_files(message):
 # Обработка сообщений
 @bot.message_handler(content_types=['text'])
 def word_processing(message):
+    
     #В главное меню
     if message.text == "\u23EAВ головне меню" or message.text =="\u23EATo main menu":
         main_menu (message)

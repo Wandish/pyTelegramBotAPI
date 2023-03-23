@@ -3,9 +3,32 @@ from telebot import types
 from openpyxl import load_workbook
 import text
 import datetime
+import logging
+import os
 
 TOKEN = '6214187356:AAFpJfITT4_D3mXvpEW1mb1XMWGEdawU_YI'
 bot = telebot.TeleBot(TOKEN)
+
+#--Логи
+logger = telebot.logger
+# logc = logger.critical
+# loge = logger.error
+# logw = logger.warning
+logi = logger.info
+# logd = logger.debug
+
+formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+'%(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
+telebot.console_output_handler.setFormatter(formatter)
+
+if not os.path.exists("logs"):
+    os.mkdir("logs")
+fh = logging.FileHandler("logs/" + datetime.datetime.now().strftime(" %Y.%m.%d-%H.%M.%S") + ".log", encoding="utf-8")
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+logger.setLevel(logging.INFO)    # уровни протокалирования
+logi("Запуск") # метка запуска
+#--конец логов
 
 #Создание словоря с iD и выбранным языком
 user_languages = {}
