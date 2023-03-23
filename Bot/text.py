@@ -174,6 +174,18 @@ anastasia_shaporda = '''<b>Анастасія Шапорда</b>
 
 З початку війни займалась волонтерство з метою допомогти людям ,які потрапили у скрутне становище через війну, а також допомагала із збором харчів та фінансів для захисників України.'''
 
+eng_anastasia_shaporda = '''<b>Anastasia Shaporda</b>
+
+Student of the Faculty of Philology of the Vinnytsia State Pedagogical University named after Mykhailo Kotsiubinsky
+
+Graphic designer, content maker.
+
+Creates professional design projects and printing products for various brands.
+
+Successfully cooperates and provides consultations to foreign and Ukrainian clients through international freelance exchanges during the last year.
+
+Since the beginning of the war, she was involved in volunteering to help people who were in a difficult situation because of the war, and also helped with the collection of food and finances for the defenders of Ukraine.'''
+
 vagif_bagirov = '''<b>Вагіф Багіров
 
 Заступник керівника грантового департаменту Благодійної організації «Громадський рух «Покоління небайдужих».</b>
@@ -188,6 +200,20 @@ vagif_bagirov = '''<b>Вагіф Багіров
 
 З січня 2022 року – лідер Деснянського району в ЗеМолодіжка Київ.'''
 
+eng_vagif_bagirov = '''<b>Vagif Bagirov
+
+Deputy Head of the Grants Department of the Charitable Organization "Public Movement "Generation of Careless People".</b>
+
+Dentist, intern.
+
+From 2016 to 2019, he was a member of the student council and student parliament at O.O. Bogomolets State University.
+
+From October 2021 to June 2022, he is the founder and chairman of the Youth Council of the Winter OTG of the Brovar district (Kyiv region).
+
+From March 2021 to January 2022 - the founder and coordinator of the "Health Protection" direction in ZeMolodizhka Kyiv. The founder of the first aid training project.
+
+From January 2022 - the leader of the Desnyan district in ZeMolodizhka Kyiv.'''
+
 khrystyna_torska = '''<b>Христина Торська</b>
 
 Студентка юридичного факультету Чернівецького національного університету ім.Ю.Федьковича, спеціальності «Право».
@@ -201,6 +227,19 @@ khrystyna_torska = '''<b>Христина Торська</b>
 Всеукраїнська школа молодого політика;
 Гра-дискусії «Українська мова в сучасних реаліях».'''
 
+eng_khrystyna_torska = '''<b>Hrystyna Torska</b>
+
+Student of the Faculty of Law of the Chernivtsi National University named after Yu. Fedkovich, majoring in "Law".
+A student of the Faculty of Philosophy of Kyiv National University named after T. Shevchenko, majoring in "Political Science".
+
+Since 2019, I have been a member of the Student Parliament and hold the post of Deputy Chairman of the Student Parliament of the Faculty of Law of Chernivtsi National University named after Yu. Fedkovich.
+
+Since 2021, she has been a delegate of the Youth Parliament at the Chernivtsi City Council.
+
+Organizer and participant of the following educational projects:
+All-Ukrainian School of Young Politicians;
+Game-discussion "Ukrainian language in modern realities".'''
+
 olga_bondarenko = '''<b>Ольга Бондаренко</b>
 
 Юрист, економіст. 
@@ -210,6 +249,16 @@ olga_bondarenko = '''<b>Ольга Бондаренко</b>
 З 2018 - 2021 рік - HR менеджер у консалтинговій компанії.
 
 З 2021 року - помічник Народного депутата України.'''
+
+eng_olga_bondarenko = '''<b>Olga Bondarenko</b>
+
+Lawyer, economist.
+
+From 2014 to 2018, he was a member of the student parliament of the Kyiv National University of Trade and Economics.
+
+From 2018 to 2021 - HR manager in a consulting company.
+
+From 2021 - assistant to the People's Deputy of Ukraine.'''
 
 zag_share = 'Для того, щоб розповісти про нас перешліть наступне повідомлення 👇'
 

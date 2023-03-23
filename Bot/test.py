@@ -558,27 +558,41 @@ def team (message):
 
     photo = open('image/team/bagirov.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.vagif_bagirov, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_vagif_bagirov, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.vagif_bagirov, parse_mode='HTML')
 
     photo = open('image/team/shaporda.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.anastasia_shaporda, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Instagram', url='https://www.instagram.com/shaporda.design')
     kb.add(btn1)
-    bot.send_message(message.chat.id, "Соціальна мережа", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_anastasia_shaporda, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)
+    else:
+        bot.send_message(message.chat.id, text=text.anastasia_shaporda, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
 
     photo = open('image/team/torska.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.khrystyna_torska, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
     btn1= types.InlineKeyboardButton(text='Instagram', url='https://www.instagram.com/kristorska')
     kb.add(btn1)
-    bot.send_message(message.chat.id, "Соціальна мережа", reply_markup = kb)
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_khrystyna_torska, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.eng_social_network, reply_markup = kb)        
+    else:
+        bot.send_message(message.chat.id, text=text.khrystyna_torska, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.social_network, reply_markup = kb)
 
     photo = open('image/team/bondarenko.jpg', 'rb')
     bot.send_photo(chat_id, photo)
-    bot.send_message(message.chat.id, text=text.olga_bondarenko, parse_mode='HTML')
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_olga_bondarenko, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.olga_bondarenko, parse_mode='HTML')
 
     button_back_about_us (message)
 #Контент - Достижения
