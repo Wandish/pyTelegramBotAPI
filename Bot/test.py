@@ -5,9 +5,14 @@ import text
 import datetime
 import logging
 import os
+from dotenv import load_dotenv, find_dotenv
 
-TOKEN = '5822918548:AAGAFXGs-vHdD7uJsNoKzTOKAURVflGWzYE'
-bot = telebot.TeleBot(TOKEN)
+# TOKEN = ''
+# bot = telebot.TeleBot(TOKEN)
+
+load_dotenv(find_dotenv()) #подгрузить файл .env
+bot = telebot.TeleBot(os.getenv('TEST_TOKEN')) #прочитать файл
+
 #--Логи
 logger = telebot.logger
 # logc = logger.critical
@@ -25,8 +30,8 @@ fh = logging.FileHandler("logs/" + datetime.datetime.now().strftime(" %Y.%m.%d-%
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-logger.setLevel(logging.INFO)    # уровни протокалирования
-logi("Запуск") # метка запуска
+logger.setLevel(logging.DEBUG)    # уровни протокалирования
+# logi("Запуск") # метка запуска
 #--конец логов
 
 #Создание словоря с iD и выбранным языком
