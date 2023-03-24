@@ -6,6 +6,10 @@ nezrozymiv = '''Перепрошую, але я вас НЕ зрозумів. Щ
 
 Якщо ви не бачите кнопок, натисніть на кнопку виклику меню бота — вона розташована праворуч від поля для введення тексту 👉'''
 
+eng_nezrozymiv = '''I'm sorry, but I did NOT understand you. To continue, click one of the BUTTONS below 👇
+
+If you don't see the buttons, click on the button to call the bot menu - it is located to the right of the text input field 👉'''
+
 vadim_gatezh = '''<b>Вадим Гатеж
 
 Засновник та Голова Благодійної організації «Громадський рух «Покоління небайдужих».</b>
@@ -14,11 +18,25 @@ vadim_gatezh = '''<b>Вадим Гатеж
 
 В минулому молодіжний та студенський громадський діяч, засновник освітніх та соціальних проєктів. 
 
-З березня 2018 року по квітень 2020 року очолював Студентський парламент юридичного факультету ЧНУ імені Юрія Федьковича
+З березня 2018 року по квітень 2020 року очолював Студентський парламент юридичного факультету ЧНУ імені Юрія Федьковича.
 
 Засновник освітнього проєкту "Всеукраїнська школа молодого політика".
 
 З травня 2020 по серпень 2020 року член Молодіжної ради при Чернівецькій обласній державній адміністрації.'''
+
+eng_vadim_gatezh = '''<b>Vadim Gatezh
+
+Founder and Chairman of the Charitable Organization "Generation of Careless Public Movement".</b>
+
+Lawyer, assistant consultant to the People's Deputy of Ukraine, adviser to a member of the permanent delegation of Ukraine to the Parliamentary Assembly of the Council of Europe.
+
+In the past, he was a youth and student public figure, founder of educational and social projects.
+
+From March 2018 to April 2020, he headed the Student Parliament of the Faculty of Law of the Yuriy Fedkovich ChNU.
+
+Founder of the educational project "All-Ukrainian School of Young Politicians".
+
+From May 2020 to August 2020, a member of the Youth Council at the Chernivtsi Regional State Administration.'''
 
 pavlo_vysotsky = '''<b>Павло Висоцький
 
@@ -36,6 +54,22 @@ pavlo_vysotsky = '''<b>Павло Висоцький
 
 З початку 2021 року по березень 2022 року виконував обов'язки помічника- консультанта народного депутата України.'''
 
+eng_pavlo_vysotsky = '''<b>Pavlo Vysotskyi
+
+Founder and Deputy Chairman of the Charitable Organization "Public Movement "Generation of the Indifferent".</b>
+
+Lawyer. Postgraduate. Public figure.
+
+From September 2018 to May 2019, he worked as a lawyer's assistant.
+
+From June 2019 to July 2020, he worked as a civil servant in the court.
+
+After his release, he participated in educational and charity projects.
+
+Entered the Academy to obtain the Doctor of Philosophy degree.
+
+From the beginning of 2021 to March 2022, he served as an assistant consultant to the People's Deputy of Ukraine.'''
+
 anna_mironyuk = '''<b>Анна Миронюк
 
 Керівниця Департаменту юридичної підтримки Благодійної організації «Громадський рух «Покоління небайдужих».</b>
@@ -46,29 +80,63 @@ anna_mironyuk = '''<b>Анна Миронюк
 
 Брала участь у реалізації проєктів, спрямованих на надання безоплатної правової допомоги населенню, за підтримки міжнародних організацій.
 
-Учасниця міжнародних змагань з судових дебатів'''
+Учасниця міжнародних змагань з судових дебатів.'''
+
+eng_anna_mironyuk = '''<b>Anna Mironyuk
+
+Head of the Legal Support Department of the Charitable Organization "Public Movement "Generation of Careless People".</b>
+
+Lawyer and certified mediator.
+
+Three years of professional experience as a legal consultant and attorney's assistant.
+
+Participated in the implementation of projects aimed at providing free legal assistance to the population, with the support of international organizations.
+
+Participant of international competitions in court debates.'''
 
 anastasia_merezhuk = '''<b>Анастасія Мережук
 
 Керівниця Департаменту освітнього розвитку Благодійної організації «Громадський рух «Покоління небайдужих».</b>
 
-Студентка юридичного факультету  Київського Національного Університету ім. Тараса Шевченка
+Студентка юридичного факультету  Київського Національного Університету ім. Тараса Шевченка.
 
 З початку війни займалась волонтерством у міжнародних організаціях: The Ukrainian House, Polsko-Ukraińskie Centrum Wolska, Caritas Polska.
 
-Співпрацювала з некомерційною організацією TechSoup 2021-2022
+Співпрацювала з некомерційною організацією TechSoup 2021-2022.
 
 З 2018 по 2021 рік брала участь в освітніх заходах, була членкинею команди активної молоді, учасницею та переможницею дебатних турнірів.'''
+
+eng_anastasia_merezhuk = '''<b>Anastasia Merezhuk
+
+Head of the Department of Educational Development of the Charitable Organization "Public Movement "Generation of Careless People".</b>
+
+A student of the Faculty of Law of the Kyiv National University named after Taras Shevchenko.
+
+Since the beginning of the war, she has been volunteering in international organizations: The Ukrainian House, Polsko-Ukraińskie Centrum Wolska, Caritas Polska.
+
+Collaborated with the non-profit organization TechSoup 2021-2022.
+
+From 2018 to 2021, she participated in educational events, was a member of the active youth team, a participant and winner of debate tournaments.'''
 
 anastasia_semenchuk = '''<b>Анастасія Семенчук
 
 Керівниця Департаменту соціальної допомоги Благодійної організації «Громадський рух «Покоління небайдужих». </b>
 
-Студентка юридичного факультету Чернівецького національного університету ім. Юрія Федьковича 
+Студентка юридичного факультету Чернівецького національного університету ім. Юрія Федьковича.
 
 Протягом 2019 - 2022 років була членкинею студентського парламенту та заступнецею голови Студентського парламенту юридичного факультету ЧНУ імені Юрія Федьковича, відповідала за соціальний напрямок.
 
 2019 - 2020 рр. була учасницею та однією з організаторів освітнього проєкту "Всеукраїнська школа молодого політика".'''
+
+eng_anastasia_semenchuk = '''<b>Anastasia Semenchuk
+
+Head of the Department of Social Assistance of the Charitable Organization "Public Movement "Generation of Caregivers". </b>
+
+Student of the Faculty of Law of the Chernivtsi National University named after Yury Fedkovych
+
+During 2019 - 2022, she was a member of the student parliament and the deputy head of the Student Parliament of the Faculty of Law of the Yuriy Fedkovich National University, responsible for the social direction.
+
+In 2019-2020, she was a participant and one of the organizers of the "All-Ukrainian School of Young Politicians" educational project.'''
 
 julia_birkova = '''<b>Юлія Биркова
 
@@ -82,6 +150,18 @@ julia_birkova = '''<b>Юлія Биркова
 
 В 2021 році закінчила Чернівецький національний університет ім. Ю. Федьковича за спеціальністю «Міжнародне право».'''
 
+eng_julia_birkova = '''<b>Yulia Birkova
+
+Head of the department of information direction of the Charitable organization "Public Movement "Generation of the Indifferent".</b>
+
+Lawyer, content manager, editor, SMM specialist.
+
+I work with international news agencies in the countries of Eastern Europe as a content manager, I help with the organization of interviews, coverage of objective events for foreign journalists on the territory of Ukraine. I advise international mass media and non-governmental organizations on managing social networks for the Ukrainian segment.
+
+In the past, she worked as a content manager and SMM specialist for a number of online stores selling consumer goods.
+
+In 2021, she graduated from the Chernivtsi National University named after Yu. Fedkovich, majoring in International Law.'''
+
 anastasia_shaporda = '''<b>Анастасія Шапорда</b>
 
 Студентка філологічного факультету Вінницького державного педагогічного університету імені Михайла Коцюбинського
@@ -93,6 +173,18 @@ anastasia_shaporda = '''<b>Анастасія Шапорда</b>
 Успішно співпрацює та надає консультації зарубіжним та українським клієнтам через міжнародні фріланс біржі протягом останнього року.
 
 З початку війни займалась волонтерство з метою допомогти людям ,які потрапили у скрутне становище через війну, а також допомагала із збором харчів та фінансів для захисників України.'''
+
+eng_anastasia_shaporda = '''<b>Anastasia Shaporda</b>
+
+Student of the Faculty of Philology of the Vinnytsia State Pedagogical University named after Mykhailo Kotsiubinsky
+
+Graphic designer, content maker.
+
+Creates professional design projects and printing products for various brands.
+
+Successfully cooperates and provides consultations to foreign and Ukrainian clients through international freelance exchanges during the last year.
+
+Since the beginning of the war, she was involved in volunteering to help people who were in a difficult situation because of the war, and also helped with the collection of food and finances for the defenders of Ukraine.'''
 
 vagif_bagirov = '''<b>Вагіф Багіров
 
@@ -108,6 +200,20 @@ vagif_bagirov = '''<b>Вагіф Багіров
 
 З січня 2022 року – лідер Деснянського району в ЗеМолодіжка Київ.'''
 
+eng_vagif_bagirov = '''<b>Vagif Bagirov
+
+Deputy Head of the Grants Department of the Charitable Organization "Public Movement "Generation of Careless People".</b>
+
+Dentist, intern.
+
+From 2016 to 2019, he was a member of the student council and student parliament at O.O. Bogomolets State University.
+
+From October 2021 to June 2022, he is the founder and chairman of the Youth Council of the Winter OTG of the Brovar district (Kyiv region).
+
+From March 2021 to January 2022 - the founder and coordinator of the "Health Protection" direction in ZeMolodizhka Kyiv. The founder of the first aid training project.
+
+From January 2022 - the leader of the Desnyan district in ZeMolodizhka Kyiv.'''
+
 khrystyna_torska = '''<b>Христина Торська</b>
 
 Студентка юридичного факультету Чернівецького національного університету ім.Ю.Федьковича, спеціальності «Право».
@@ -121,6 +227,19 @@ khrystyna_torska = '''<b>Христина Торська</b>
 Всеукраїнська школа молодого політика;
 Гра-дискусії «Українська мова в сучасних реаліях».'''
 
+eng_khrystyna_torska = '''<b>Hrystyna Torska</b>
+
+Student of the Faculty of Law of the Chernivtsi National University named after Yu. Fedkovich, majoring in "Law".
+A student of the Faculty of Philosophy of Kyiv National University named after T. Shevchenko, majoring in "Political Science".
+
+Since 2019, I have been a member of the Student Parliament and hold the post of Deputy Chairman of the Student Parliament of the Faculty of Law of Chernivtsi National University named after Yu. Fedkovich.
+
+Since 2021, she has been a delegate of the Youth Parliament at the Chernivtsi City Council.
+
+Organizer and participant of the following educational projects:
+All-Ukrainian School of Young Politicians;
+Game-discussion "Ukrainian language in modern realities".'''
+
 olga_bondarenko = '''<b>Ольга Бондаренко</b>
 
 Юрист, економіст. 
@@ -130,6 +249,16 @@ olga_bondarenko = '''<b>Ольга Бондаренко</b>
 З 2018 - 2021 рік - HR менеджер у консалтинговій компанії.
 
 З 2021 року - помічник Народного депутата України.'''
+
+eng_olga_bondarenko = '''<b>Olga Bondarenko</b>
+
+Lawyer, economist.
+
+From 2014 to 2018, he was a member of the student parliament of the Kyiv National University of Trade and Economics.
+
+From 2018 to 2021 - HR manager in a consulting company.
+
+From 2021 - assistant to the People's Deputy of Ukraine.'''
 
 zag_share = 'Для того, щоб розповісти про нас перешліть наступне повідомлення 👇'
 
@@ -151,7 +280,11 @@ https://t.me/Generation_of_the_Careless_bot
 
 help_points_of_invincibility = '''<b>Допомога пунктам незламності</b>
 
-Передано десятки пакунків гуманітарної допомоги (їжа, ліки, одяг) на запити внутрішньо переміщених осіб, які вони нам залишають у нашому чат-боті та соціальних мережах'''
+Передано десятки пакунків гуманітарної допомоги (їжа, ліки, одяг) на запити внутрішньо переміщених осіб, які вони нам залишають у нашому чат-боті та соціальних мережах.'''
+
+eng_help_points_of_invincibility = '''<b>Help points of invincibility</b>
+
+Dozens of humanitarian aid packages (food, medicine, clothing) were handed over in response to the requests of internally displaced persons, which they leave for us in our chatbot and social networks.'''
 
 img_invincibility = ["image/achievements/invincibility_1.jpeg", 
                      "image/achievements/invincibility_2.jpeg", 
@@ -165,6 +298,10 @@ img_invincibility = ["image/achievements/invincibility_1.jpeg",
 trip_to_donetsk_region = '''<b>Поїздка в Донецьку область</b>
 
 Здійснено поїздку у звільненні населені пункти Донецької області, де передано 15 тонн гуманітарної допомоги (їжа, ліки, одяг) нашим бійцям Збройних сил України та жителям, які проживають у Ямполі, Краматорську, Торському, Лимані та інших н.п.'''
+
+eng_trip_to_donetsk_region = '''<b>A trip to the Donetsk region</b>
+
+A trip was made to the liberated settlements of the Donetsk region, where 15 tons of humanitarian aid (food, medicine, clothes) were handed over to our soldiers of the Armed Forces of Ukraine and residents living in Yampol, Kramatorsk, Torskyi, Lyman and others, etc.'''
 
 img_donetsk =["image/achievements/donetsk_1.jpeg", 
               "image/achievements/donetsk_2.jpeg", 
@@ -194,6 +331,23 @@ herson = '''<b>Обігрів населених пунктів Херсонщи
 
 <b>Наближаємо перемогу разом!</b>💪🏻'''
 
+eng_herson = '''<b>Heating of populated areas of Kherson Oblast</b>
+
+Thanks to your donations, the help of benefactors, and in cooperation with the charity organization <b>“Blessing for people”</b>, we did it.
+
+During the trip, <b>12</b> tons of food and medicine were handed over to servicemen of the Armed Forces of Ukraine, the Derprikordonsluzhba and residents of the liberated settlements of Urozhane, Tomarine, Novy Bereslav.
+
+With the collected amount of funds within the limits of the recent donation, we purchased:
+
+🔋Diesel electric generator;
+🔥<b>30</b> heaters with gas cylinders;
+🧋<b>10</b> thousand tip sets for the heating point at the Kherson railway station (glasses and tea bags);
+🚚Logistics of a truck for the transportation of food products is provided.
+
+We would like to express our special thanks for the support of the driver Yuriy Kapitanyuk, benefactors Yevgeny Kupriya, Dmytro Gatezh, Stepan Gatezh, Kateryna Moisei, Ivan Kovalchuk, Volodymyr Galchuk, Dmytro Klevchuk and all others. Without you, this would not have happened.
+
+<b>We are approaching victory together!</b>💪🏻'''
+
 img_herson =["image/achievements/herson_1.jpg", 
              "image/achievements/herson_2.jpg", 
              "image/achievements/herson_3.jpg",
@@ -206,6 +360,10 @@ rana = '''<b>«RANA UA»</b>
 
 БО «Покоління небайдужих» стала партнером благодійного проєкту <b>«RANA UA»</b>, який покликаний зібрати кошти на будівництво інноваційного реабілітаційного хабу «Захисник» – для військових, які отримали травми, пов’язані з ампутацією. Наша комадна БО «Покоління небайдужих» виставила на лот надзвичайно цінну і символічну річ — прапор України, який підписаний Головнокомандувачем ЗСУ Валерієм Залужним. Кошти благодійників за наданий нами лот будуть спрямовані для будівництва реабілітаційного центру для наших захисників.'''
 
+eng_rana = '''<b>"RANA UA"</b>
+
+BO "Generation of the Careless" became a partner of the charity project <b>"RANA UA"</b>, which is designed to raise funds for the construction of the innovative rehabilitation hub "Defender" - for military personnel who have received injuries related to amputation. Our team BO "Generation of the Caring" put on the lot an extremely valuable and symbolic thing - the flag of Ukraine, which was signed by the Commander-in-Chief of the Armed Forces of Ukraine Valery Zaluzhny. Funds from benefactors for the lot provided by us will be directed to the construction of a rehabilitation center for our defenders.'''
+
 img_rana = ["image/achievements/rana_1.jpeg", 
             "image/achievements/rana_2.jpeg", 
             "image/achievements/rana_3.jpeg"]
@@ -213,6 +371,10 @@ img_rana = ["image/achievements/rana_1.jpeg",
 blessing_for_people = '''<b>«Blessing for people</b>»
 
 Наша команда БО «Покоління небайдужих», за сприяння БО <b>«Blessing for people»</b>, вже неодноразово передає захисникам України військову амуніцію. Так, нещодавно десяток бронежилетів та плитоносок були відправлені українським бійцям, що боронять нашу державу. Кошти благодійників за наданий нами лот будуть спрямовані для будівництва реабілітаційного центру для наших захисників.'''
+
+eng_blessing_for_people = '''<b>"Blessing for people</b>"
+
+Our team of the BO "Generations of the Indifferent", with the assistance of the BO <b>"Blessing for people"</b>, has already repeatedly handed over military ammunition to the defenders of Ukraine. Yes, recently a dozen body armor and plate carriers were sent to Ukrainian soldiers defending our state. Funds from benefactors for the lot provided by us will be directed to the construction of a rehabilitation center for our defenders.'''
 
 img_blessing_for_people = ["image/achievements/blessing_1.jpeg", 
                            "image/achievements/blessing_2.jpeg", 
@@ -223,6 +385,10 @@ help_to_the_needy = '''<b>Допомога нужденним</b>
 
 Наша команда продовжує допомагати тим, хто цього потребує! Нещодавно, за підтримки благодійників, передали ноутбук для навчання сину воїна, який загинув. Інформацію про таку потребу направили нам наші колеги. На жаль, це не поверне втрату батька, проте хоча б трішки зробить хлопчика щасливішим. Раді бути корисними, разом до перемоги!'''
 
+eng_help_to_the_needy = '''<b>Helping the needy</b>
+
+Our team continues to help those in need! Recently, with the support of benefactors, a laptop was given to the son of a soldier who died. Our colleagues sent us information about this need. Unfortunately, this will not bring back the loss of his father, but it will at least make the boy a little happier. Glad to be useful, together to victory!'''
+
 img_help_to_the_needy = ["image/achievements/help_needy_1.jpeg", 
                          "image/achievements/help_needy_2.jpeg"]
 
@@ -230,10 +396,14 @@ assistance_kherson_region = '''<b>Допомога жителям Херсонщ
 
 Жителі Новобериславського старостинського округу, що на Херсонщині, отримали чергову партію продуктів харчування. Сьогодні у мешканців прифронтових населених пунктів є велика потреба у такій допомозі, адже в їх селах, селищах, містах здебільшого не працюють магазини, де можна було б придбати необхідне. Ця допомога не була б доставлена без вашої підтримки. Творимо добрі справи разом і наближаємо нашу перемогу спільно.'''
 
-img_assistance_kherson_region = ["image/achievements/assistance_kherson_region_1.jpg.", 
-                                 "image/achievements/assistance_kherson_region_2.jpg.", 
-                                 "image/achievements/assistance_kherson_region_3.jpg.",
-                                 "image/achievements/assistance_kherson_region_4.jpg."]
+eng_assistance_kherson_region = '''<b>Help to residents of Kherson Oblast</b>
+
+Residents of Novoberislavskyi Starostynsky District, Kherson Oblast, received another batch of food products. Today, the residents of the front-line settlements have a great need for such help, because in their villages, towns, and cities there are mostly no shops where you can buy what you need. This assistance would not have been delivered without your support. Let's do good things together and bring our victory closer together.'''
+
+img_assistance_kherson_region = ["image/achievements/assistance_kherson_region_1.jpg", 
+                                 "image/achievements/assistance_kherson_region_2.jpg", 
+                                 "image/achievements/assistance_kherson_region_3.jpg",
+                                 "image/achievements/assistance_kherson_region_4.jpg"]
 
 legal_consultation = '''У зв'язку з тимчасово обмеженими ресурсами нашої команди, ми в змозі надати лише загальні юридичні консультації у відповідь на Ваші звернення. 
 
@@ -384,3 +554,7 @@ get_help_not_understand = '''🤷‍♂️Вибачте, але я розумі
 help_project_not_understand = '''🤷‍♂️Вибачте, але я розумію тільки текстові звернення, спробуйте ще раз!\U0001f447'''
 
 eng_help_project_not_understand = '''🤷‍♂️Sorry, but I only understand text appeals, try again!\U0001f447'''
+
+social_network = '''Соціальна мережа:'''
+
+eng_social_network = '''Social network:'''
