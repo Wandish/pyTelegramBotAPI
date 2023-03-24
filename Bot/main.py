@@ -1,33 +1,36 @@
 import telebot
+from dotenv import load_dotenv, find_dotenv
+import logging
+import os
+from datetime import datetime
 from telebot import types
 from openpyxl import load_workbook
 import text
-import datetime
-import logging
-import os
 
-TOKEN = '6214187356:AAFpJfITT4_D3mXvpEW1mb1XMWGEdawU_YI'
-bot = telebot.TeleBot(TOKEN)
+# TOKEN = ''
+# bot = telebot.TeleBot(TOKEN)
+
+load_dotenv(find_dotenv()) #подгрузить файл .env
+bot = telebot.TeleBot(os.getenv('TOKEN')) #прочитать файл
 
 #--Логи
 logger = telebot.logger
-# logc = logger.critical
-# loge = logger.error
-# logw = logger.warning
+loge = logger.error
+logw = logger.warning
 logi = logger.info
-# logd = logger.debug
+logd = logger.debug
 
-formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+'%(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
+formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+' %(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
 telebot.console_output_handler.setFormatter(formatter)
 
 if not os.path.exists("logs"):
-    os.mkdir("logs")
-fh = logging.FileHandler("logs/" + datetime.datetime.now().strftime(" %Y.%m.%d-%H.%M.%S") + ".log", encoding="utf-8")
+  os.mkdir("logs")
+fh = logging.FileHandler("logs/" + datetime.now().strftime(" %Y.%m.%d-%H.%M.%S") + ".log", encoding="utf-8")
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-logger.setLevel(logging.INFO)    # уровни протокалирования
-logi("Запуск") # метка запуска
+logger.setLevel(logging.INFO)    
+logi("Запуск")
 #--конец логов
 
 #Создание словоря с iD и выбранным языком
@@ -149,7 +152,7 @@ def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
     # Находим последнюю строку с данными
     last_row = sheet.max_row + 1
     #Текущее время
-    yest_datetime = datetime.datetime.now()
+    yest_datetime = datetime.now()
     # Добавляем новые данные в последнюю строку
     sheet.cell(row=last_row, column=1, value=yest_datetime)
     sheet.cell(row=last_row, column=2, value=var_button_legal)
@@ -430,7 +433,7 @@ def other_help_excel (message):
     # Находим последнюю строку с данными
     last_row = sheet.max_row + 1
     #Текущее время
-    yest_datetime = datetime.datetime.now()
+    yest_datetime = datetime.now()
     # Добавляем новые данные в последнюю строку
     sheet.cell(row=last_row, column=1, value=yest_datetime)
     sheet.cell(row=last_row, column=2, value=message.text)
@@ -715,6 +718,7 @@ def handle_files(message):
 # Обработка сообщений
 @bot.message_handler(content_types=['text'])
 def word_processing(message):
+    
     #В главное меню
     if message.text == "\u23EAВ головне меню" or message.text =="\u23EATo main menu":
         main_menu (message)
