@@ -1,0 +1,24 @@
+Установка библиотеки виртуального окружения
+pip install virtualenv
+
+cd - нужно находиться в дириктории
+
+Это создаст новое виртуальное окружение в папке venv.
+virtualenv venv
+
+Активация
+venv\Scripts\activate
+
+Деакцивация
+deactivate
+
+Списток установленных библиотек
+pip list
+
+Сохранить все пакеты в файл
+pip freeze > requirements.txt
+Удилить все пакеты
+pip uninstall -y -r requirements.txt
+
+Установить все которые были в файле (не обьязательно, по дефолту 2-е останеться)
+pip install -r requirements.txt
