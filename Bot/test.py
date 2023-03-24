@@ -33,11 +33,24 @@ logger.setLevel(logging.INFO)
 logi("Запуск")
 #--конец логов
 
+#Прочтение файла и создание сета для разсылки
+chatids_file = open("chatids.txt", "r")
+chatids_users = set ()
+for line in chatids_file:
+    chatids_users.add(line.strip())
+chatids_file.close()
+
 #Создание словоря с iD и выбранным языком
 user_languages = {}
 #Команда /start - выбор языка
 @bot.message_handler(commands=['start'])
 def language_selection(message):
+    #Проверяет есть ли id в сете, если нет то добавляет
+    if not str(message.chat.id) in chatids_users:
+        chatids_file = open("chatids.txt", "a")
+        chatids_file.write(str(message.chat.id) + "\n")
+        chatids_users.add(message.chat.id)
+
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.language_selection)
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -46,6 +59,23 @@ def language_selection(message):
     kb.add(btn1, btn2,)
     bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
     bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+#Отправка сообщение админом по команде /send
+@bot.message_handler(commands=['send'])
+def send_a_message(message):
+    #Проверка на админа
+    if message.chat.id == 759572442:
+        for user in chatids_users:
+            bot.send_message(user, message.text[message.text.find(' '):])
+    #если не админ выбивает стандартную (непонимайку)
+    else:
+        bot.send_chat_action(message.chat.id, 'typing')
+        chat_id = message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_nezrozymiv, parse_mode='HTML')
+        else:
+            bot.send_message(message.chat.id, text=text.nezrozymiv, parse_mode='HTML')
+        photo = open('image/nezrozymiv.jpg', 'rb')
+        bot.send_photo(chat_id, photo)
 # Функция для обработки выбора языка пользователем
 @bot.message_handler(func=lambda message: message.text in ['🇬🇧English', '🇺🇦Українська'])
 def language_preservation(message):
