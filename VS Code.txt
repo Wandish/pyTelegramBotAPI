@@ -11,3 +11,5 @@ pip install - установить
 pip uninstall - удалить
 
 pip install pygame --pre
+
+ТЕСТ
