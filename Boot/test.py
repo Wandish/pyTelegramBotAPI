@@ -202,7 +202,7 @@ def ignor_button_help_project(message):
     elif message.text == '\u23EAВ головне меню':
         main_menu(message)
     #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
-    elif message.content_type != 'text' or len(message.text.split()) <= 5:
+    elif message.content_type != 'text' or len(message.text.split()) < 4:
         bot.send_chat_action(message.chat.id, 'typing')
         bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
     else:
@@ -435,7 +435,7 @@ def ignor_button_other_help(message):
     elif message.text == "\u23EATo main menu":
         main_menu(message)
     #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
-    elif message.content_type != 'text' or len(message.text.split()) <= 5:
+    elif message.content_type != 'text' or len(message.text.split()) < 4:
         other_help (message)
     else:
         other_help_excel(message)
