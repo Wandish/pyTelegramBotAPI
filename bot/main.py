@@ -1,27 +1,16 @@
-import telebot
 from dotenv import load_dotenv, find_dotenv
+from telebot import TeleBot, logger, console_output_handler, types
 import logging
 import os
 from datetime import datetime
-from telebot import types
 from openpyxl import load_workbook
 import text
 
-# TOKEN = ''
-# bot = telebot.TeleBot(TOKEN)
-
 load_dotenv(find_dotenv()) #подгрузить файл .env
-bot = telebot.TeleBot(os.getenv('TEST_TOKEN')) #прочитать файл
-
-#--Логи
-logger = telebot.logger
-loge = logger.error
-logw = logger.warning
-logi = logger.info
-logd = logger.debug
-
+bot = TeleBot(os.getenv('TOKEN')) #прочитать файл
+#-- Запись логов
 formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+' %(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
-telebot.console_output_handler.setFormatter(formatter)
+console_output_handler.setFormatter(formatter)
 
 if not os.path.exists("logs"):
   os.mkdir("logs")
@@ -30,14 +19,27 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 logger.setLevel(logging.INFO)    
-logi("Запуск")
-#--конец логов
+logger.info("Запуск")
+#-- Конец логов
+
+#Прочтение файла и создание сета для разсылки
+chatids_file = open("chatids.txt", "r")
+chatids_users = set ()
+for line in chatids_file:
+    chatids_users.add(line.strip())
+chatids_file.close()
 
 #Создание словоря с iD и выбранным языком
 user_languages = {}
 #Команда /start - выбор языка
 @bot.message_handler(commands=['start'])
 def language_selection(message):
+    #Проверяет есть ли id в сете, если нет то добавляет
+    if not str(message.chat.id) in chatids_users:
+        chatids_file = open("chatids.txt", "a")
+        chatids_file.write(str(message.chat.id) + "\n")
+        chatids_users.add(message.chat.id)
+
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.language_selection)
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -46,6 +48,23 @@ def language_selection(message):
     kb.add(btn1, btn2,)
     bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
     bot.send_message(message.chat.id, text=text.eng_button_driver,reply_markup=kb)
+#Отправка сообщение админом по команде /send
+@bot.message_handler(commands=['send'])
+def send_a_message(message):
+    #Проверка на админа
+    if message.chat.id == 759572442:
+        for user in chatids_users:
+            bot.send_message(user, message.text[message.text.find(' '):])
+    #если не админ выбивает стандартную (непонимайку)
+    else:
+        bot.send_chat_action(message.chat.id, 'typing')
+        chat_id = message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_nezrozymiv, parse_mode='HTML')
+        else:
+            bot.send_message(message.chat.id, text=text.nezrozymiv, parse_mode='HTML')
+        photo = open('image/nezrozymiv.jpg', 'rb')
+        bot.send_photo(chat_id, photo)
 # Функция для обработки выбора языка пользователем
 @bot.message_handler(func=lambda message: message.text in ['🇬🇧English', '🇺🇦Українська'])
 def language_preservation(message):
@@ -182,8 +201,8 @@ def ignor_button_help_project(message):
         main_help_project (message)
     elif message.text == '\u23EAВ головне меню':
         main_menu(message)
-        # Проигнорировать сообщения, которые не являются текстом!
-    elif message.content_type != 'text':
+    #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
+    elif message.content_type != 'text' or len(message.text.split()) < 4:
         bot.send_chat_action(message.chat.id, 'typing')
         bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
     else:
@@ -415,13 +434,8 @@ def ignor_button_other_help(message):
         main_menu_donats (message)
     elif message.text == "\u23EATo main menu":
         main_menu(message)
-    elif message.content_type != 'text':
-        bot.send_chat_action(message.chat.id, 'typing')
-        chat_id = message.chat.id
-        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-            bot.send_message(message.chat.id, text=text.eng_help_project_not_understand, parse_mode='HTML')
-        else:
-            bot.send_message(message.chat.id, text=text.help_project_not_understand, parse_mode='HTML')
+    #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
+    elif message.content_type != 'text' or len(message.text.split()) < 4:
         other_help (message)
     else:
         other_help_excel(message)
@@ -626,7 +640,7 @@ def team (message):
 def achievements (message):
     bot.send_chat_action(message.chat.id, 'typing')
     photo_paths = text.img_invincibility
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     # media_group = []
     # for path in photo_paths:
     #     with open(path, "rb") as f:
@@ -639,7 +653,7 @@ def achievements (message):
         bot.send_message(message.chat.id, text=text.help_points_of_invincibility, parse_mode='HTML')
 
     photo_paths = text.img_donetsk
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_trip_to_donetsk_region, parse_mode='HTML')
@@ -647,7 +661,7 @@ def achievements (message):
         bot.send_message(message.chat.id, text=text.trip_to_donetsk_region, parse_mode='HTML')
 
     photo_paths = text.img_herson
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_herson, parse_mode='HTML')
@@ -655,7 +669,7 @@ def achievements (message):
         bot.send_message(message.chat.id, text=text.herson, parse_mode='HTML')
 
     photo_paths = text.img_rana
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_rana, parse_mode='HTML')
@@ -663,7 +677,7 @@ def achievements (message):
         bot.send_message(message.chat.id, text=text.rana, parse_mode='HTML')
 
     photo_paths = text.img_blessing_for_people
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_blessing_for_people, parse_mode='HTML')
@@ -671,7 +685,7 @@ def achievements (message):
         bot.send_message(message.chat.id, text=text.blessing_for_people, parse_mode='HTML')
 
     photo_paths = text.img_help_to_the_needy
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
       bot.send_message(message.chat.id, text=text.eng_help_to_the_needy, parse_mode='HTML')
@@ -679,7 +693,7 @@ def achievements (message):
         bot.send_message(message.chat.id, text=text.help_to_the_needy, parse_mode='HTML')
         
     photo_paths = text.img_assistance_kherson_region
-    media_group = [telebot.types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
     bot.send_media_group(message.chat.id, media=media_group)
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_assistance_kherson_region, parse_mode='HTML')
@@ -706,7 +720,7 @@ def social_networks (message):
 #------------конец------ Меню - про нас------
 
 #Обработчик файлов
-@bot.message_handler(content_types=['photo', 'document', 'voice', 'video'])
+@bot.message_handler(content_types=['photo', 'document', 'voice', 'video', 'sticker', 'animation'])
 def handle_files(message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
