@@ -182,7 +182,10 @@ def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
     sheet.cell(row=last_row, column=7, value=message.from_user.username)
     sheet.cell(row=last_row, column=8, value=message.chat.id)
     # Сохраняем изменения в файл
-    wb.save('request.xlsx') 
+    try:
+        wb.save('proposal.xlsx')
+    except OSError as os:
+        print(f"Не вдалось зберегти, файл був відкритий при збереженні: {os}")
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
     bot.send_message(message.chat.id, text=text.button_driver)
@@ -441,35 +444,50 @@ def ignor_button_other_help(message):
         other_help_excel(message)
 #Сохранние в эксельку
 def other_help_excel (message):
-    wb = load_workbook('proposal.xlsx')
-    # Открываем
-    sheet = wb.active
-    # Находим последнюю строку с данными
-    last_row = sheet.max_row + 1
-    #Текущее время
-    yest_datetime = datetime.now()
-    # Добавляем новые данные в последнюю строку
-    sheet.cell(row=last_row, column=1, value=yest_datetime)
-    sheet.cell(row=last_row, column=2, value=message.text)
-    sheet.cell(row=last_row, column=3, value=message.from_user.first_name)
-    sheet.cell(row=last_row, column=4, value=message.from_user.last_name)
-    sheet.cell(row=last_row, column=5, value=message.from_user.username)
-    sheet.cell(row=last_row, column=6, value=message.chat.id)
-    # Сохраняем изменения в файл
-    wb.save('proposal.xlsx') 
-    # bot.send_message(message.chat.id, text=text.thank_contacting)
-    bot.send_chat_action(message.chat.id, 'typing')
-    chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_thank_contacting, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.eng_button_driver)
-    #Отправка в ТГ канал уведомления
-        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fHelp the project (proposal)")
-    else:
-        bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.button_driver)
-    #Отправка в ТГ канал уведомления
-        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fДопомогти проекту (proposal)")
+    try:
+        wb = load_workbook('proposal.xlsx')
+        # Открываем
+        sheet = wb.active
+        # Находим последнюю строку с данными
+        last_row = sheet.max_row + 1
+        #Текущее время
+        yest_datetime = datetime.now()
+        # Добавляем новые данные в последнюю строку
+        sheet.cell(row=last_row, column=1, value=yest_datetime)
+        sheet.cell(row=last_row, column=2, value=message.text)
+        sheet.cell(row=last_row, column=3, value=message.from_user.first_name)
+        sheet.cell(row=last_row, column=4, value=message.from_user.last_name)
+        sheet.cell(row=last_row, column=5, value=message.from_user.username)
+        sheet.cell(row=last_row, column=6, value=message.chat.id)
+        # Сохраняем изменения в файл
+        wb.save('proposal.xlsx')
+        # Отправка спасибо
+        bot.send_chat_action(message.chat.id, 'typing')
+        chat_id = message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_thank_contacting, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.eng_button_driver)
+        #Отправка в ТГ канал уведомления
+            bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fHelp the project (proposal)")
+        else:
+            bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.button_driver)
+        #Отправка в ТГ канал уведомления
+            bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fДопомогти проекту (proposal)")
+    except Exception as ex:
+        #Вывести в принт ошибку
+        print(f"Не вдалось відправити повідомлення: {ex}")
+        #Принудительно записать в лог
+        logger.exception("Ошибка при выполнении скрипта")
+        chat_id = message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_failed_to_send, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.eng_button_driver)
+        #Отправка в ТГ канал уведомления
+            bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fHelp the project (proposal)")
+        else:
+            bot.send_message(message.chat.id, text=text.failed_to_send, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.button_driver)
 #------------ конец----Меню Допомогти проекту-----
 
 #------------Меню Освітні заходи
