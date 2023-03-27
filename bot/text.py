@@ -413,9 +413,13 @@ thank_contacting = '''😊Дякую, за приділену увагу!
 ✉️Ваше звернення зареєстроване!
 📞Наша команда зв'яжеться з Вами для подальшої комунікації.'''
 
-eng_thank_contacting = '''😊 Thank you for your attention!
+eng_thank_contacting = '''😊Thank you for your attention!
 ✉️Your appeal is registered!
 📞Our team will contact you for further communication.'''
+
+failed_to_send = '''🙍‍♂️Мені шкода, на жаль не вдалося відправити ваше повідомлення. Спробуйте пізніше⌛'''
+
+eng_failed_to_send = '''🙍‍♂️I'm sorry, unfortunately your message could not be sent. Try again later⌛'''
 
 your_situation = '''📝Опишіть Вашу ситуацію, яка потребує вирішення, одним повідомленням. Обов'язково вкажіть <b>ваше Ім'я</b> і <b>номер</b> мобільного <b>телефону</b>!'''
 
@@ -522,10 +526,10 @@ eng_what_money_for = '''Funds or other resources that you provide to our charity
 
 Our organization guarantees a mandatory report on the results of the assistance provided, in accordance with the norms of the current legislation.'''
 
-crypto_check = '''<b>USDT(TRC20)</b>
-TMPcMPpih7bPAuwqc1Wo58p32s9f9HwSSa
+USDT_crypto_check = '''<b>USDT(TRC20)</b>
+TMPcMPpih7bPAuwqc1Wo58p32s9f9HwSSa'''
 
-<b>BTC</b>
+BTC_crypto_check ='''<b>BTC</b>
 1DDiR75G3XQyhg6ssHXBc3EoGVtRFQEqxR'''
 
 other_help_t = '''📝Зазначте одним повідомленням, який вид допомоги Ви можете надати для реалізації наших проєктів? Обов'язково вкажіть <b>ваше Ім'я</b> і <b>номер</b> мобільного <b>телефону</b>!'''
