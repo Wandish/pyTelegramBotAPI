@@ -9,15 +9,17 @@ import text
 load_dotenv(find_dotenv()) #подгрузить файл .env
 bot = TeleBot(os.getenv('TOKEN')) #прочитать файл
 #-- Запись логов
+#Cоздаем объект класса Formatter
 formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+' %(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
+#Создаем обработчик для вывода сообщений лога в консоль
 console_output_handler.setFormatter(formatter)
-
+#Создаем обработчик для вывода сообщений лога в файл
 if not os.path.exists("logs"):
   os.mkdir("logs")
 fh = logging.FileHandler("logs/" + datetime.now().strftime(" %Y.%m.%d-%H.%M.%S") + ".log", encoding="utf-8")
 fh.setFormatter(formatter)
 logger.addHandler(fh)
-
+#Задаем уровень логирования
 logger.setLevel(logging.INFO)    
 logger.info("Запуск")
 #-- Конец логов
@@ -90,6 +92,7 @@ def share (message):
 # Меню - Главное + команда
 @bot.message_handler(commands=['menu']) #Не переводиться на англ.
 def main_menu (message):
+    bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         bot.send_message(message.chat.id, text = text.eng_privetstvie)
@@ -418,6 +421,7 @@ def your_help_is_straightened (message):
 #🧦Інша допомога
 @bot.message_handler(func=lambda message: message.text == "🧦Інша допомога" or message.text == "🧦Other assistance")
 def other_help (message):
+    bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         sent = bot.send_message(message.chat.id, text = text.eng_other_help_t, parse_mode='HTML')
@@ -501,7 +505,6 @@ def educational_activities(message):
 #------------ Меню - Про нас
 @bot.message_handler(func=lambda message: message.text == "\U0001faf6Про нас" or message.text == "\U0001faf6About us")
 def menu_about_us (message):
-    bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
