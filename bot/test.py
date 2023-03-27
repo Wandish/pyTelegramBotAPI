@@ -3,19 +3,21 @@ from telebot import TeleBot, logger, console_output_handler, types
 import logging
 import os
 from datetime import datetime
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 import text
 
 load_dotenv(find_dotenv()) #подгрузить файл .env
 bot = TeleBot(os.getenv('TEST_TOKEN')) #прочитать файл
+
 #-- Запись логов
 #Cоздаем объект класса Formatter
 formatter = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d'+' %(threadName)s %(funcName)s) %(levelname)s - %(name)s: "%(message)s"',' %Y.%m.%d %H:%M:%S')
 #Создаем обработчик для вывода сообщений лога в консоль
 console_output_handler.setFormatter(formatter)
-#Создаем обработчик для вывода сообщений лога в файл
+#Проверят создана ли папка logs
 if not os.path.exists("logs"):
   os.mkdir("logs")
+#Создаем обработчик для вывода сообщений лога в файл
 fh = logging.FileHandler("logs/" + datetime.now().strftime(" %Y.%m.%d-%H.%M.%S") + ".log", encoding="utf-8")
 fh.setFormatter(formatter)
 logger.addHandler(fh)
@@ -24,6 +26,9 @@ logger.setLevel(logging.INFO)
 logger.info("Запуск")
 #-- Конец логов
 
+#Проверят создан ли файл chatids.txt
+if not os.path.exists("chatids.txt"):
+    open("chatids.txt", "w").close()
 #Прочтение файла и создание сета для разсылки
 chatids_file = open("chatids.txt", "r")
 chatids_users = set ()
@@ -167,6 +172,10 @@ def callback_query(call):
         legal_consultation(call.message)
 #Отправка в Эксельку
 def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
+    #Проверяет есть ли файл с имене request.xlsx
+    if not os.path.exists('request.xlsx'):
+        wb = Workbook()
+        wb.save('request.xlsx')
     # Загружаем эксельку
     wb = load_workbook('request.xlsx')
     # Открываем
@@ -453,6 +462,10 @@ def ignor_button_other_help(message):
         other_help_excel(message)
 #Сохранние в эксельку
 def other_help_excel (message):
+    #Проверяет есть ли файл с имене proposal.xlsx
+    if not os.path.exists('proposal.xlsx'):
+        wb = Workbook()
+        wb.save('proposal.xlsx')
     wb = load_workbook('proposal.xlsx')
     # Открываем
     sheet = wb.active
