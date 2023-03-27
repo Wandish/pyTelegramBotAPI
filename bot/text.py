@@ -526,10 +526,10 @@ eng_what_money_for = '''Funds or other resources that you provide to our charity
 
 Our organization guarantees a mandatory report on the results of the assistance provided, in accordance with the norms of the current legislation.'''
 
-crypto_check = '''<b>USDT(TRC20)</b>
-TMPcMPpih7bPAuwqc1Wo58p32s9f9HwSSa
+USDT_crypto_check = '''<b>USDT(TRC20)</b>
+TMPcMPpih7bPAuwqc1Wo58p32s9f9HwSSa'''
 
-<b>BTC</b>
+BTC_crypto_check ='''<b>BTC</b>
 1DDiR75G3XQyhg6ssHXBc3EoGVtRFQEqxR'''
 
 other_help_t = '''📝Зазначте одним повідомленням, який вид допомоги Ви можете надати для реалізації наших проєктів? Обов'язково вкажіть <b>ваше Ім'я</b> і <b>номер</b> мобільного <b>телефону</b>!'''

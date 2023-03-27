@@ -182,7 +182,14 @@ def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
     sheet.cell(row=last_row, column=7, value=message.from_user.username)
     sheet.cell(row=last_row, column=8, value=message.chat.id)
     # Сохраняем изменения в файл
-    wb.save('request.xlsx') 
+    try:
+        wb.save('request.xlsx')
+    except PermissionError:
+        logger.exception("Не вдалось зберегти файл:")
+        bot.send_chat_action(message.chat.id, 'typing')
+        bot.send_message(message.chat.id, text=text.failed_to_send, parse_mode='HTML')
+        bot.send_message(message.chat.id, text=text.button_driver)
+        return
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
     bot.send_message(message.chat.id, text=text.button_driver)
@@ -373,7 +380,7 @@ def button_uan (message):
     menu_vozvrata_bank_accounts (message)
 #Кнопка USD
 @bot.message_handler(func=lambda message: message.text == "\U0001f1fa\U0001f1f8USD")
-def button_uan (message):
+def button_usd (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
@@ -383,7 +390,7 @@ def button_uan (message):
     menu_vozvrata_bank_accounts (message)
 #Кнопка EUR
 @bot.message_handler(func=lambda message: message.text == "\U0001f1ea\U0001f1faEUR")
-def button_uan (message):
+def button_eur (message):
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
@@ -395,7 +402,8 @@ def button_uan (message):
 @bot.message_handler(func=lambda message: message.text == "\U0001fa99Криптовалюта" or message.text == "\U0001fa99Cryptocurrency")
 def crypto (message):
     bot.send_chat_action(message.chat.id, 'typing')
-    bot.send_message(message.chat.id, text = text.crypto_check, parse_mode='HTML')
+    bot.send_message(message.chat.id, text = text.USDT_crypto_check, parse_mode='HTML')
+    bot.send_message(message.chat.id, text = text.BTC_crypto_check, parse_mode='HTML')
     menu_vozvrata_mono_krypto (message)
 #Кнопка ❓На що буде спрямована ваша допомога
 @bot.message_handler(func=lambda message: message.text == "❓На що буде спрямована ваша допомога" or message.text == "❓What will your help be aimed to")
@@ -456,8 +464,19 @@ def other_help_excel (message):
     sheet.cell(row=last_row, column=5, value=message.from_user.username)
     sheet.cell(row=last_row, column=6, value=message.chat.id)
     # Сохраняем изменения в файл
-    wb.save('proposal.xlsx') 
-    # bot.send_message(message.chat.id, text=text.thank_contacting)
+    try:
+        wb.save('proposal.xlsx')
+    except PermissionError:
+        logger.exception("Не вдалось зберегти файл:")
+        bot.send_chat_action(message.chat.id, 'typing')
+        chat_id = message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_failed_to_send, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.eng_button_driver)
+        else:
+            bot.send_message(message.chat.id, text=text.failed_to_send, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.button_driver)
+        return
     bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
