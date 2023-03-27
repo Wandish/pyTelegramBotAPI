@@ -29,7 +29,8 @@ logger.info("Запуск")
 #Проверят создан ли файл chatids.txt
 if not os.path.exists("chatids.txt"):
     open("chatids.txt", "w").close()
-#Прочтение файла и создание сета для разсылки
+#Загрузка массива с файла в SET
+#Разсылка идет по SET, не по файлу (файл выступает в роли истории)
 chatids_file = open("chatids.txt", "r")
 chatids_users = set ()
 for line in chatids_file:
@@ -41,11 +42,13 @@ user_languages = {}
 #Команда /start - выбор языка
 @bot.message_handler(commands=['start'])
 def language_selection(message):
-    #Проверяет есть ли id в сете, если нет то добавляет
+    #Если chat.id нет в сете то добавляет
     if not str(message.chat.id) in chatids_users:
         chatids_file = open("chatids.txt", "a")
-        chatids_file.write(str(message.chat.id) + "\n")
         chatids_users.add(message.chat.id)
+        #Если chat.id нет в файле добавляет
+        if str(message.chat.id) not in open('chatids.txt').read():
+            chatids_file.write(str(message.chat.id) + "\n")
 
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.language_selection)
