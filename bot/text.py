@@ -417,9 +417,9 @@ eng_thank_contacting = '''😊Thank you for your attention!
 ✉️Your appeal is registered!
 📞Our team will contact you for further communication.'''
 
-failed_to_send = '''🙍‍♂️Мені шкода, на жаль не вдалося відправити ваше повідомлення. Спробуйте пізніше.'''
+failed_to_send = '''🙍‍♂️Мені шкода, на жаль не вдалося відправити ваше повідомлення. Спробуйте пізніше⌛'''
 
-eng_failed_to_send = '''🙍‍♂️I'm sorry, unfortunately your message could not be sent. Try again later.'''
+eng_failed_to_send = '''🙍‍♂️I'm sorry, unfortunately your message could not be sent. Try again later⌛'''
 
 your_situation = '''📝Опишіть Вашу ситуацію, яка потребує вирішення, одним повідомленням. Обов'язково вкажіть <b>ваше Ім'я</b> і <b>номер</b> мобільного <b>телефону</b>!'''
 
