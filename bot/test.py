@@ -23,7 +23,6 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 #Задаем уровень логирования
 logger.setLevel(logging.INFO)    
-logger.info("Запуск")
 #-- Конец логов
 
 #Проверят создан ли файл chatids.txt
@@ -809,4 +808,8 @@ def word_processing(message):
         photo = open('image/nezrozymiv.jpg', 'rb')
         bot.send_photo(chat_id, photo)
 
-bot.polling(non_stop=True)
+try:
+    logger.info("---Запуск---")
+    bot.polling(non_stop=True)
+except Exception as e:
+    logging.exception(e)
