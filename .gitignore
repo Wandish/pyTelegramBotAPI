@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+logs/
+desktop.ini
+chatids.txt
+proposal.xlsx
+request.xlsx
