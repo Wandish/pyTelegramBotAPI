@@ -62,7 +62,7 @@ def language_selection(message):
 @bot.message_handler(commands=['send'])
 def send_a_message(message):
     #Проверка на админа
-    if message.chat.id == 759572442:
+    if message.chat.id in (759572442, 402411612):
         for user in chatids_users:
             bot.send_message(user, message.text[message.text.find(' '):])
     #если не админ выбивает стандартную (непонимайку)
