@@ -278,11 +278,11 @@ Follow the link:
 https://t.me/Generation_of_the_Careless_bot
 '''
 
-help_points_of_invincibility = '''<b>Допомога пунктам незламності</b>
+help_points_of_invincibility = '''<b>Допомога ВПО</b>
 
 Передано десятки пакунків гуманітарної допомоги (їжа, ліки, одяг) на запити внутрішньо переміщених осіб, які вони нам залишають у нашому чат-боті та соціальних мережах.'''
 
-eng_help_points_of_invincibility = '''<b>Help points of invincibility</b>
+eng_help_points_of_invincibility = '''<b>Help of VPO</b>
 
 Dozens of humanitarian aid packages (food, medicine, clothing) were handed over in response to the requests of internally displaced persons, which they leave for us in our chatbot and social networks.'''
 
@@ -381,11 +381,11 @@ img_blessing_for_people = ["image/achievements/blessing_1.jpeg",
                            "image/achievements/blessing_3.jpeg",
                            "image/achievements/blessing_4.jpeg"]
 
-help_to_the_needy = '''<b>Допомога нужденним</b>
+help_to_the_needy = '''<b>Внесок в майбутнє</b>
 
 Наша команда продовжує допомагати тим, хто цього потребує! Нещодавно, за підтримки благодійників, передали ноутбук для навчання сину воїна, який загинув. Інформацію про таку потребу направили нам наші колеги. На жаль, це не поверне втрату батька, проте хоча б трішки зробить хлопчика щасливішим. Раді бути корисними, разом до перемоги!'''
 
-eng_help_to_the_needy = '''<b>Helping the needy</b>
+eng_help_to_the_needy = '''<b>Contribution to the future</b>
 
 Our team continues to help those in need! Recently, with the support of benefactors, a laptop was given to the son of a soldier who died. Our colleagues sent us information about this need. Unfortunately, this will not bring back the loss of his father, but it will at least make the boy a little happier. Glad to be useful, together to victory!'''
 
