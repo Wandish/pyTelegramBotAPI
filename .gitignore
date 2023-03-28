@@ -130,3 +130,6 @@ dmypy.json
 
 logs/
 desktop.ini
+chatids.txt
+proposal.xlsx
+request.xlsx
