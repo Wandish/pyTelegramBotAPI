@@ -178,6 +178,10 @@ def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
     #Проверяет есть ли файл с имене request.xlsx
     if not os.path.exists('request.xlsx'):
         wb = Workbook()
+        ws = wb.active
+        # Добавляем первую строку с заголовками столбцов
+        ws.append(['yest_datetime', 'var_button_legal', 'var_button', 'message.text', 'first_name', 'last_name', 'username', 'chat.id'])
+        # Сохраняем файл
         wb.save('request.xlsx')
     # Загружаем эксельку
     wb = load_workbook('request.xlsx')
@@ -468,7 +472,12 @@ def other_help_excel (message):
     #Проверяет есть ли файл с имене proposal.xlsx
     if not os.path.exists('proposal.xlsx'):
         wb = Workbook()
+        ws = wb.active
+        # Добавляем первую строку с заголовками столбцов
+        ws.append(['yest_datetime', 'message.text', 'first_name', 'last_name', 'username', 'chat.id'])
+        # Сохраняем файл
         wb.save('proposal.xlsx')
+    # Загружаем эксельку
     wb = load_workbook('proposal.xlsx')
     # Открываем
     sheet = wb.active
