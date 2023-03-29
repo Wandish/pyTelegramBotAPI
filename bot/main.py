@@ -23,7 +23,6 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 #Задаем уровень логирования
 logger.setLevel(logging.INFO)    
-logger.info("Запуск")
 #-- Конец логов
 
 #Проверят создан ли файл chatids.txt
@@ -42,13 +41,14 @@ user_languages = {}
 #Команда /start - выбор языка
 @bot.message_handler(commands=['start'])
 def language_selection(message):
-    #Если chat.id нет в сете то добавляет
+    #Если chat.id нет в сете (chatids_users) то добавляет
     if not str(message.chat.id) in chatids_users:
-        chatids_file = open("chatids.txt", "a")
         chatids_users.add(message.chat.id)
-        #Если chat.id нет в файле добавляет
+        #Если chat.id нет в файле (chatids.txt) то добавляет
         if str(message.chat.id) not in open('chatids.txt').read():
+            chatids_file = open("chatids.txt", "a")
             chatids_file.write(str(message.chat.id) + "\n")
+            chatids_file.close()
 
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.language_selection)
@@ -809,4 +809,8 @@ def word_processing(message):
         photo = open('image/nezrozymiv.jpg', 'rb')
         bot.send_photo(chat_id, photo)
 
-bot.polling(non_stop=True)
+logger.info("---Запуск---")
+try:
+    bot.infinity_polling()
+except Exception as e:
+    logging.exception(e)
