@@ -808,8 +808,8 @@ def word_processing(message):
         photo = open('image/nezrozymiv.jpg', 'rb')
         bot.send_photo(chat_id, photo)
 
+logger.info("---Запуск---")
 try:
-    logger.info("---Запуск---")
-    bot.polling(non_stop=True)
+    bot.infinity_polling()
 except Exception as e:
     logging.exception(e)
