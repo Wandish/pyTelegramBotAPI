@@ -258,9 +258,8 @@ def handle_callback(call):
     chat_id = call.message.chat.id
     bot.send_message(chat_id, f"Ви: {callback_data}")
     sent = bot.send_message(chat_id, text=text.your_situation, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project, button_get_help="👨‍⚖️Юридична консультація",callback_data = call.data)
-    button_back_main_help_project (call)
-
+    bot.register_next_step_handler(sent, ignor_button_help_project, button_get_help="👨‍⚖️Юридична консультація", callback_data=callback_data)
+    button_back_main_help_project(call.message)
 
 @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
 def humanitarian_aid (message):
