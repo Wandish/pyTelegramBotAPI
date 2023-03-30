@@ -138,10 +138,109 @@ def button_back_main_help_project (message):
     kb.add(btn1, btn2)
     bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
 # Меню - Юридична консультація    
+# @bot.message_handler(func=lambda message: message.text == "👨‍⚖️Юридична консультація")
+# def legal_consultation(message):
+#     global user_choice
+#     user_choice = {}
+#     bot.send_chat_action(message.chat.id, 'typing')
+#     bot.send_message(message.chat.id, text = text.legal_consultation, parse_mode='HTML')
+#     kb = types.InlineKeyboardMarkup(row_width=1)
+#     btn1 = types.InlineKeyboardButton(text='\U0001fa96Я військовослужбовець', callback_data='Військовослужбовець')
+#     btn2 = types.InlineKeyboardButton(text='🧳Я внутрішньо переміщена особа', callback_data='Внутрішньо переміщена особа')
+#     btn3 = types.InlineKeyboardButton(text='😢Я людина, яка постраждала від війни', callback_data='Людина, яка постраждала від війни')
+#     btn4 = types.InlineKeyboardButton(text='🤲Я волонтер', callback_data='Волонтер')
+#     kb.add(btn1, btn2, btn3, btn4)
+#     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
+#     button_back_main_help_project (message)
+#Фукция проверки повторного нажатия инлайн кнопки
+# @bot.callback_query_handler(func=lambda call: True)
+# def callback_query(call):
+#     global var_button_legal
+#     global var_button
+#     chat_id = call.message.chat.id
+#     # Проверяем, был ли выбран ответ для данного пользователя
+#     if chat_id in user_choice:
+#         bot.send_message(chat_id, text=text.in_button, parse_mode='HTML')
+#         return
+#     # Сохраняем выбранный ответ для данного пользователя
+#     user_choice[chat_id] = call.data
+#     # Ваш код обработки выбора
+
+#     bot.answer_callback_query(callback_query_id=call.id)
+#     var_button = call.data
+#     if call.data != None:
+#         var_button_legal = '👨‍⚖️Юридична консультація'
+#         sent = bot.send_message(chat_id, text=text.your_situation, parse_mode='HTML')
+#         bot.register_next_step_handler(sent, ignor_button_help_project)
+#     else:
+#         legal_consultation(call.message)
+
+class GetHelp:
+    def __init__(self, message, button_get_help, callback_data = None):
+        self.message = message
+        self.button_get_help = button_get_help
+        self.callback_data = callback_data 
+
+    def check_file(self):
+        if not os.path.exists('Get_Help.xlsx'):
+            wb = Workbook()
+            ws = wb.active
+            ws.append(['yest_datetime', 'var_button_legal', 'callback_data', 'message.text', 'first_name', 'last_name', 'username', 'chat.id'])
+            wb.save('Get_Help.xlsx')
+            
+    def add_data(self):
+        wb = load_workbook('Get_Help.xlsx')
+        sheet = wb.active
+        last_row = sheet.max_row + 1
+        yest_datetime = datetime.now()
+        sheet.cell(row=last_row, column=1, value=yest_datetime)
+        sheet.cell(row=last_row, column=2, value=self.button_get_help)
+        sheet.cell(row=last_row, column=3, value=self.callback_data)
+        sheet.cell(row=last_row, column=4, value=self.message.text)
+        sheet.cell(row=last_row, column=5, value=self.message.from_user.first_name)
+        sheet.cell(row=last_row, column=6, value=self.message.from_user.last_name)
+        sheet.cell(row=last_row, column=7, value=self.message.from_user.username)
+        sheet.cell(row=last_row, column=8, value=self.message.chat.id)
+        try:
+            wb.save('Get_Help.xlsx')
+        except PermissionError:
+            logger.exception("Не вдалось зберегти файл:")
+            bot.send_chat_action(self.message.chat.id, 'typing')
+            bot.send_message(self.message.chat.id, text=text.failed_to_send, parse_mode='HTML')
+            bot.send_message(self.message.chat.id, text=text.button_driver)
+            return
+        
+    def send_response(self):
+        bot.send_chat_action(self.message.chat.id, 'typing')
+        bot.send_message(self.message.chat.id, text=text.thank_contacting, parse_mode='HTML')
+        bot.send_message(self.message.chat.id, text=text.button_driver)
+        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f198Отримати допомогу (Get_Help)")
+
+    def process_request(self):
+        self.check_file()
+        self.add_data()
+        self.send_response()
+
+def ignor_button_help_project(message, button_get_help, callback_data = None):
+    if message.text == '/start':
+        language_selection(message)
+    elif message.text == '/menu':
+        main_menu(message)
+    elif message.text == '/share':
+        share(message)
+    elif message.text == '\U0001f519Hазад':
+        main_help_project (message)
+    elif message.text == '\u23EAВ головне меню':
+        main_menu(message)
+    elif message.content_type != 'text' or len(message.text.split()) < 4:
+        bot.send_chat_action(message.chat.id, 'typing')
+        bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
+    else:
+        help_zsy = GetHelp(message, button_get_help, callback_data)
+        help_zsy.process_request()
+        
 @bot.message_handler(func=lambda message: message.text == "👨‍⚖️Юридична консультація")
 def legal_consultation(message):
-    global user_choice
-    user_choice = {}
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text = text.legal_consultation, parse_mode='HTML')
     kb = types.InlineKeyboardMarkup(row_width=1)
@@ -152,120 +251,134 @@ def legal_consultation(message):
     kb.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
     button_back_main_help_project (message)
-#Фукция проверки повторного нажатия инлайн кнопки
-@bot.callback_query_handler(func=lambda call: True)
-def callback_query(call):
-    global var_button_legal
-    global var_button
+
+@bot.callback_query_handler(func=lambda call: call.data in ['Військовослужбовець', 'Внутрішньо переміщена особа', 'Людина, яка постраждала від війни', 'Волонтер'])
+def handle_callback(call):
+    callback_data = call.data
     chat_id = call.message.chat.id
-    # Проверяем, был ли выбран ответ для данного пользователя
-    if chat_id in user_choice:
-        bot.send_message(chat_id, text=text.in_button, parse_mode='HTML')
-        return
-    # Сохраняем выбранный ответ для данного пользователя
-    user_choice[chat_id] = call.data
-    # Ваш код обработки выбора
-    bot.answer_callback_query(callback_query_id=call.id)
-    var_button = call.data
-    if call.data != None:
-        var_button_legal = '👨‍⚖️Юридична консультація'
-        sent = bot.send_message(chat_id, text=text.your_situation, parse_mode='HTML')
-        bot.register_next_step_handler(sent, ignor_button_help_project)
-    else:
-        legal_consultation(call.message)
-#Отправка в Эксельку
-def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
-    #Проверяет есть ли файл с имене request.xlsx
-    if not os.path.exists('request.xlsx'):
-        wb = Workbook()
-        ws = wb.active
-        # Добавляем первую строку с заголовками столбцов
-        ws.append(['yest_datetime', 'var_button_legal', 'var_button', 'message.text', 'first_name', 'last_name', 'username', 'chat.id'])
-        # Сохраняем файл
-        wb.save('request.xlsx')
-    # Загружаем эксельку
-    wb = load_workbook('request.xlsx')
-    # Открываем
-    sheet = wb.active
-    # Находим последнюю строку с данными
-    last_row = sheet.max_row + 1
-    #Текущее время
-    yest_datetime = datetime.now()
-    # Добавляем новые данные в последнюю строку
-    sheet.cell(row=last_row, column=1, value=yest_datetime)
-    sheet.cell(row=last_row, column=2, value=var_button_legal)
-    sheet.cell(row=last_row, column=3, value=var_button)
-    sheet.cell(row=last_row, column=4, value=message.text)
-    sheet.cell(row=last_row, column=5, value=message.from_user.first_name)
-    sheet.cell(row=last_row, column=6, value=message.from_user.last_name)
-    sheet.cell(row=last_row, column=7, value=message.from_user.username)
-    sheet.cell(row=last_row, column=8, value=message.chat.id)
-    # Сохраняем изменения в файл
-    try:
-        wb.save('request.xlsx')
-    except PermissionError:
-        logger.exception("Не вдалось зберегти файл:")
-        bot.send_chat_action(message.chat.id, 'typing')
-        bot.send_message(message.chat.id, text=text.failed_to_send, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.button_driver)
-        return
-    bot.send_chat_action(message.chat.id, 'typing')
-    bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
-    bot.send_message(message.chat.id, text=text.button_driver)
-    #Отправка в ТГ канал уведомления
-    bot.send_message('-1001801043894', "Вам повідомлення: \U0001f198Отримати допомогу (request)")
-#Обработка, чтобы не отправлялись кнопки в сообщениях
-def ignor_button_help_project(message):
-    if message.text == '/start':
-        language_selection(message)
-    elif message.text == '/menu':
-        main_menu(message)
-    elif message.text == '/share':
-        share(message)
-        #Назад через символ H (англ)
-    elif message.text == '\U0001f519Hазад':
-        main_help_project (message)
-    elif message.text == '\u23EAВ головне меню':
-        main_menu(message)
-    #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
-    elif message.content_type != 'text' or len(message.text.split()) < 4:
-        bot.send_chat_action(message.chat.id, 'typing')
-        bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
-    else:
-        humanitarian_dream_help_zsy(message,var_button_legal,var_button)
-#Гумонітарна допомога
+    bot.send_message(chat_id, f"Ви: {callback_data}")
+    sent = bot.send_message(chat_id, text=text.your_situation, parse_mode='HTML')
+    bot.register_next_step_handler(sent, ignor_button_help_project, button_get_help="👨‍⚖️Юридична консультація",callback_data = call.data)
+    button_back_main_help_project (call)
+
+
 @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
-def Humanitarian_aid (message):
-    global var_button
-    var_button = None
-    global var_button_legal
-    var_button_legal = '📦Гуманітарна допомога'
+def humanitarian_aid (message):
     bot.send_chat_action(message.chat.id, 'typing')
+    var_humanitarian_aid = "📦Гуманітарна допомога"
     sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project)
+    bot.register_next_step_handler(sent, ignor_button_help_project, button_get_help=var_humanitarian_aid)
     button_back_main_help_project (message)
-#Реалізувати Вашу мрію
-@bot.message_handler(func=lambda message: message.text == "🙏Реалізувати Вашу мрію")
-def realize_your_dream(message):
-    global var_button
-    var_button = None
-    global var_button_legal
-    var_button_legal = '🙏Реалізувати Вашу мрію'
-    bot.send_chat_action(message.chat.id, 'typing')
-    sent = bot.send_message(message.chat.id, text = text.realize_your_dream, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project)
-    button_back_main_help_project (message)
-#Допомога для ЗСУ
+
 @bot.message_handler(func=lambda message: message.text == "\U0001fa96Допомога для ЗСУ")
-def help_zsy(message):
-    global var_button
-    var_button = None
-    global var_button_legal
-    var_button_legal = '\U0001fa96Допомога для ЗСУ'
+def help_for_zsy(message):
+    var_help_for_zsy = '\U0001fa96Допомога для ЗСУ'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.help_zsy, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project)
+    bot.register_next_step_handler(sent, ignor_button_help_project, button_get_help=var_help_for_zsy)
     button_back_main_help_project (message)
+
+@bot.message_handler(func=lambda message: message.text == "🙏Реалізувати Вашу мрію")
+def realize_your_dream(message):
+    var_realize_your_dream = '🙏Реалізувати Вашу мрію'
+    bot.send_chat_action(message.chat.id, 'typing')
+    sent = bot.send_message(message.chat.id, text = text.realize_your_dream, parse_mode='HTML')
+    bot.register_next_step_handler(sent, ignor_button_help_project, button_get_help=var_realize_your_dream)
+    button_back_main_help_project (message)
+
+#Отправка в Эксельку
+# def humanitarian_dream_help_zsy(message,var_button_legal,var_button=None):
+#     #Проверяет есть ли файл с имене request.xlsx
+#     if not os.path.exists('request.xlsx'):
+#         wb = Workbook()
+#         ws = wb.active
+#         # Добавляем первую строку с заголовками столбцов
+#         ws.append(['yest_datetime', 'var_button_legal', 'var_button', 'message.text', 'first_name', 'last_name', 'username', 'chat.id'])
+#         # Сохраняем файл
+#         wb.save('request.xlsx')
+#     # Загружаем эксельку
+#     wb = load_workbook('request.xlsx')
+#     # Открываем
+#     sheet = wb.active
+#     # Находим последнюю строку с данными
+#     last_row = sheet.max_row + 1
+#     #Текущее время
+#     yest_datetime = datetime.now()
+#     # Добавляем новые данные в последнюю строку
+#     sheet.cell(row=last_row, column=1, value=yest_datetime)
+#     sheet.cell(row=last_row, column=2, value=var_button_legal)
+#     sheet.cell(row=last_row, column=3, value=var_button)
+#     sheet.cell(row=last_row, column=4, value=message.text)
+#     sheet.cell(row=last_row, column=5, value=message.from_user.first_name)
+#     sheet.cell(row=last_row, column=6, value=message.from_user.last_name)
+#     sheet.cell(row=last_row, column=7, value=message.from_user.username)
+#     sheet.cell(row=last_row, column=8, value=message.chat.id)
+#     # Сохраняем изменения в файл
+#     try:
+#         wb.save('request.xlsx')
+#     except PermissionError:
+#         logger.exception("Не вдалось зберегти файл:")
+#         bot.send_chat_action(message.chat.id, 'typing')
+#         bot.send_message(message.chat.id, text=text.failed_to_send, parse_mode='HTML')
+#         bot.send_message(message.chat.id, text=text.button_driver)
+#         return
+#     bot.send_chat_action(message.chat.id, 'typing')
+#     bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
+#     bot.send_message(message.chat.id, text=text.button_driver)
+#     #Отправка в ТГ канал уведомления
+#     bot.send_message('-1001801043894', "Вам повідомлення: \U0001f198Отримати допомогу (request)")
+# #Обработка, чтобы не отправлялись кнопки в сообщениях
+# def ignor_button_help_project(message):
+#     if message.text == '/start':
+#         language_selection(message)
+#     elif message.text == '/menu':
+#         main_menu(message)
+#     elif message.text == '/share':
+#         share(message)
+#         #Назад через символ H (англ)
+#     elif message.text == '\U0001f519Hазад':
+#         main_help_project (message)
+#     elif message.text == '\u23EAВ головне меню':
+#         main_menu(message)
+#     #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
+#     elif message.content_type != 'text' or len(message.text.split()) < 4:
+#         bot.send_chat_action(message.chat.id, 'typing')
+#         bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
+#     else:
+#         humanitarian_dream_help_zsy(message,var_button_legal,var_button)
+# #Гумонітарна допомога
+# @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
+# def Humanitarian_aid (message):
+#     global var_button
+#     var_button = None
+#     global var_button_legal
+#     var_button_legal = '📦Гуманітарна допомога'
+#     bot.send_chat_action(message.chat.id, 'typing')
+#     sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
+#     bot.register_next_step_handler(sent, ignor_button_help_project)
+#     button_back_main_help_project (message)
+# #Реалізувати Вашу мрію
+# @bot.message_handler(func=lambda message: message.text == "🙏Реалізувати Вашу мрію")
+# def realize_your_dream(message):
+#     global var_button
+#     var_button = None
+#     global var_button_legal
+#     var_button_legal = '🙏Реалізувати Вашу мрію'
+#     bot.send_chat_action(message.chat.id, 'typing')
+#     sent = bot.send_message(message.chat.id, text = text.realize_your_dream, parse_mode='HTML')
+#     bot.register_next_step_handler(sent, ignor_button_help_project)
+#     button_back_main_help_project (message)
+# #Допомога для ЗСУ
+# @bot.message_handler(func=lambda message: message.text == "\U0001fa96Допомога для ЗСУ")
+# def help_zsy(message):
+#     global var_button
+#     var_button = None
+#     global var_button_legal
+#     var_button_legal = '\U0001fa96Допомога для ЗСУ'
+#     bot.send_chat_action(message.chat.id, 'typing')
+#     sent = bot.send_message(message.chat.id, text = text.help_zsy, parse_mode='HTML')
+#     bot.register_next_step_handler(sent, ignor_button_help_project)
+#     button_back_main_help_project (message)
 #------------ конец----Меню Отримати допомогу-----
 
 #------------ Меню Допомогти проекту-----
