@@ -1,5 +1,5 @@
 from dotenv import load_dotenv, find_dotenv
-from telebot import TeleBot, logger, console_output_handler, types
+from telebot import TeleBot, logger, console_output_handler, types,apihelper
 import logging
 import os
 from datetime import datetime
@@ -167,8 +167,15 @@ class SendMessage:
         else:
             bot.send_message(self.message.chat.id, text=text.thank_contacting, parse_mode='HTML')
             bot.send_message(self.message.chat.id, text=text.button_driver)
-        bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: @{self.message.from_user.username}\nТекст повідомелння: \n{self.message.text}")
-
+        if self.message.from_user.username:
+            user = f"@{self.message.from_user.username}"
+        else:
+            user = f"{self.message.chat.id}"
+        try:
+            bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: {user}\nТекст повідомелння: \n{self.message.text}")
+        except apihelper.ApiException:
+            logger.exception("Дуже велике повідомлення, не вдалось відправити його в ТГ канал")
+            return
     def process_request(self):
         self.check_file()
         self.add_data()
@@ -190,7 +197,7 @@ def ignor_button(message, button_location, button_who_are_you = None):
         main_menu_donats (message)
     elif message.text == "\u23EATo main menu":
         main_menu(message)
-    elif message.content_type != 'text' or len(message.text.split()) < 3:
+    elif message.content_type != 'text' or len(message.text.split()) < 2:
         bot.send_chat_action(message.chat.id, 'typing')
         chat_id = message.chat.id
         if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
