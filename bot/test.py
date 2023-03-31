@@ -167,7 +167,7 @@ class SendMessage:
         else:
             bot.send_message(self.message.chat.id, text=text.thank_contacting, parse_mode='HTML')
             bot.send_message(self.message.chat.id, text=text.button_driver)
-        bot.send_message('-1001801043894', f"Вам повідомлення: {self.button_location}")
+        bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: @{self.message.from_user.username}\nТекст повідомелння: \n{self.message.text}")
 
     def process_request(self):
         self.check_file()
@@ -190,7 +190,7 @@ def ignor_button(message, button_location, button_who_are_you = None):
         main_menu_donats (message)
     elif message.text == "\u23EATo main menu":
         main_menu(message)
-    elif message.content_type != 'text' or len(message.text.split()) < 4:
+    elif message.content_type != 'text' or len(message.text.split()) < 3:
         bot.send_chat_action(message.chat.id, 'typing')
         chat_id = message.chat.id
         if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
@@ -223,7 +223,7 @@ def legal_consultation(message):
     button_back_main_help_project (message)
 #Меню Кто ТЫ
 def button_back_main_help_project (message):
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     btn1 = types.KeyboardButton(text = "\U0001fa96Я військовослужбовець")
     btn2 = types.KeyboardButton(text = "🧳Я внутрішньо переміщена особа")
     btn3 = types.KeyboardButton(text = "😢Я людина, яка постраждала від війни")
