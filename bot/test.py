@@ -49,7 +49,7 @@ def language_selection(message):
             chatids_file = open("chatids.txt", "a")
             chatids_file.write(str(message.chat.id) + "\n")
             chatids_file.close()
-
+    #Кнопки выбора языка
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text=text.language_selection)
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
@@ -118,19 +118,8 @@ def main_menu (message):
         btn4 = types.KeyboardButton(text="\U0001faf6Про нас")
         kb.add(btn1, btn2, btn3, btn4)
         bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-#------------ Меню Отримати допомогу-----
-#Меню Отримати допомогу
-@bot.message_handler(func=lambda message: message.text == "\U0001f198Отримати допомогу")
-def main_help_project (message):
-    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    btn1 = types.KeyboardButton(text = "👨‍⚖️Юридична консультація")
-    btn2 = types.KeyboardButton(text = "📦Гуманітарна допомога")
-    btn3 = types.KeyboardButton(text = "🙏Реалізувати Вашу мрію")
-    btn4 = types.KeyboardButton(text = "\U0001fa96Допомога для ЗСУ")
-    btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")  
-    kb.add(btn1, btn2, btn3, btn4, btn5)
-    bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
-# Меню - Юридична консультація    
+
+#--Отправка сообщений   
 class SendMessage:
     def __init__(self, message, button_location, button_who_are_you = None):
         self.message = message
@@ -162,23 +151,29 @@ class SendMessage:
         except PermissionError:
             logger.exception("Не вдалось зберегти файл:")
             bot.send_chat_action(self.message.chat.id, 'typing')
-            bot.send_message(self.message.chat.id, text=text.failed_to_send, parse_mode='HTML')
-            bot.send_message(self.message.chat.id, text=text.button_driver)
+            chat_id = self.message.chat.id
+            if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+                bot.send_message(self.message.chat.id, text=text.eng_failed_to_send, parse_mode='HTML')
+                bot.send_message(self.message.chat.id, text=text.eng_button_driver)
+            else:
+                bot.send_message(self.message.chat.id, text=text.failed_to_send, parse_mode='HTML')
+                bot.send_message(self.message.chat.id, text=text.button_driver)
             return
-        
-    def send_response(self):
         bot.send_chat_action(self.message.chat.id, 'typing')
-        bot.send_message(self.message.chat.id, text=text.thank_contacting, parse_mode='HTML')
-        bot.send_message(self.message.chat.id, text=text.button_driver)
+        chat_id = self.message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(self.message.chat.id, text=text.eng_thank_contacting, parse_mode='HTML')
+            bot.send_message(self.message.chat.id, text=text.eng_button_driver)
+        else:
+            bot.send_message(self.message.chat.id, text=text.thank_contacting, parse_mode='HTML')
+            bot.send_message(self.message.chat.id, text=text.button_driver)
         bot.send_message('-1001801043894', f"Вам повідомлення: {self.button_location}")
-
 
     def process_request(self):
         self.check_file()
         self.add_data()
-        self.send_response()
-
-def ignor_button_help_project(message, button_location, button_who_are_you = None):
+#Игнор кнопок
+def ignor_button(message, button_location, button_who_are_you = None):
     if message.text == '/start':
         language_selection(message)
     elif message.text == '/menu':
@@ -191,20 +186,42 @@ def ignor_button_help_project(message, button_location, button_who_are_you = Non
         button_back_main_help_project (message)
     elif message.text == '\u23EAВ головне меню':
         main_menu(message)
+    elif message.text == "\U0001f519Bаck":
+        main_menu_donats (message)
+    elif message.text == "\u23EATo main menu":
+        main_menu(message)
     elif message.content_type != 'text' or len(message.text.split()) < 4:
         bot.send_chat_action(message.chat.id, 'typing')
-        bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
+        chat_id = message.chat.id
+        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+            bot.send_message(message.chat.id, text=text.eng_get_help_not_understand, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.eng_button_driver, parse_mode='HTML')
+        else:
+            bot.send_message(message.chat.id, text=text.get_help_not_understand, parse_mode='HTML')
+            bot.send_message(message.chat.id, text=text.button_driver, parse_mode='HTML')
     else:
         help_zsy = SendMessage(message, button_location, button_who_are_you)
         help_zsy.process_request()
-        
+#--конец отправки сообщений
+#------------ Меню Отримати допомогу-----
+#Меню Отримати допомогу
+@bot.message_handler(func=lambda message: message.text == "\U0001f198Отримати допомогу")
+def main_help_project (message):
+    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    btn1 = types.KeyboardButton(text = "👨‍⚖️Юридична консультація")
+    btn2 = types.KeyboardButton(text = "📦Гуманітарна допомога")
+    btn3 = types.KeyboardButton(text = "🙏Реалізувати Вашу мрію")
+    btn4 = types.KeyboardButton(text = "\U0001fa96Допомога для ЗСУ")
+    btn5 = types.KeyboardButton(text = "\u23EAВ головне меню")  
+    kb.add(btn1, btn2, btn3, btn4, btn5)
+    bot.send_message(message.chat.id, text=text.button_driver,reply_markup=kb)
+#Юридическая консультация 
 @bot.message_handler(func=lambda message: message.text == "👨‍⚖️Юридична консультація")
 def legal_consultation(message):
     bot.send_chat_action(message.chat.id, 'typing')
     bot.send_message(message.chat.id, text = text.legal_consultation, parse_mode='HTML')
     button_back_main_help_project (message)
-
-#Меню- Кто Ты
+#Меню Кто ТЫ
 def button_back_main_help_project (message):
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn1 = types.KeyboardButton(text = "\U0001fa96Я військовослужбовець")
@@ -216,47 +233,80 @@ def button_back_main_help_project (message):
     kb.add(btn1, btn2, btn3, btn4, btn5, btn6)
     bot.send_message(message.chat.id, "💁🏻‍♂️Тут ви можете отримати допомогу, але вам потрібно розповісти про себе", reply_markup=kb)
     bot.send_message(message.chat.id, text=text.button_driver)
-
+#Я військовослужбовець
 @bot.message_handler(func=lambda message: message.text == "\U0001fa96Я військовослужбовець")
 def soldier (message):
     bot.send_chat_action(message.chat.id, 'typing')
     var_legal_consultation = "👨‍⚖️Юридична консультація"
     var_soldier = "\U0001fa96Я військовослужбовець"
     sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project, button_location=var_legal_consultation, button_who_are_you = var_soldier)
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_legal_consultation, button_who_are_you = var_soldier)
     button_back_main_help_project_who_are_you (message)
-
-#Кнопки возврата когда выбрали Кто Ты
+#Я внутрішньо переміщена особа
+@bot.message_handler(func=lambda message: message.text == "🧳Я внутрішньо переміщена особа")
+def soldier (message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    var_legal_consultation = "👨‍⚖️Юридична консультація"
+    var_soldier = "🧳Я внутрішньо переміщена особа"
+    sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_legal_consultation, button_who_are_you = var_soldier)
+    button_back_main_help_project_who_are_you (message)
+#Я людина, яка постраждала від війни
+@bot.message_handler(func=lambda message: message.text == "😢Я людина, яка постраждала від війни")
+def soldier (message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    var_legal_consultation = "👨‍⚖️Юридична консультація"
+    var_soldier = "😢Я людина, яка постраждала від війни"
+    sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_legal_consultation, button_who_are_you = var_soldier)
+    button_back_main_help_project_who_are_you (message)
+#Я волонтер
+@bot.message_handler(func=lambda message: message.text == "🤲Я волонтер")
+def soldier (message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    var_legal_consultation = "👨‍⚖️Юридична консультація"
+    var_soldier = "🤲Я волонтер"
+    sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_legal_consultation, button_who_are_you = var_soldier)
+    button_back_main_help_project_who_are_you (message)
+#Возвррат с выбора КТО ТЫ, в Юридическую консультацию
 def button_back_main_help_project_who_are_you (message):
     kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn1 = types.KeyboardButton(text = "\U0001f519Haзaд")
     btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")
     kb.add(btn1, btn2)
     bot.send_message(message.chat.id, text=text.button_driver, reply_markup=kb)
-
+#Гуманітарна допомога
 @bot.message_handler(func=lambda message: message.text == "📦Гуманітарна допомога")
 def humanitarian_aid (message):
     bot.send_chat_action(message.chat.id, 'typing')
     var_humanitarian_aid = "📦Гуманітарна допомога"
     sent = bot.send_message(message.chat.id, text = text.your_situation, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project, button_location=var_humanitarian_aid)
-    button_back_main_help_project (message)
-
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_humanitarian_aid)
+    button_back_main_help_project_locations (message)
+#Допомога для ЗСУ
 @bot.message_handler(func=lambda message: message.text == "\U0001fa96Допомога для ЗСУ")
 def help_for_zsy(message):
     var_help_for_zsy = '\U0001fa96Допомога для ЗСУ'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.help_zsy, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project, button_location=var_help_for_zsy)
-    button_back_main_help_project (message)
-
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_help_for_zsy)
+    button_back_main_help_project_locations (message)
+#Реалізувати Вашу мрію
 @bot.message_handler(func=lambda message: message.text == "🙏Реалізувати Вашу мрію")
 def realize_your_dream(message):
     var_realize_your_dream = '🙏Реалізувати Вашу мрію'
     bot.send_chat_action(message.chat.id, 'typing')
     sent = bot.send_message(message.chat.id, text = text.realize_your_dream, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_help_project, button_location=var_realize_your_dream)
-    button_back_main_help_project (message)
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_realize_your_dream)
+    button_back_main_help_project_locations (message)
+#Возврат в Отримати допомогу
+def button_back_main_help_project_locations (message):
+    kb = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    btn1 = types.KeyboardButton(text = "\U0001f519Hазад")
+    btn2 = types.KeyboardButton(text = "\u23EAВ головне меню")
+    kb.add(btn1, btn2)
+    bot.send_message(message.chat.id, text=text.button_driver, reply_markup=kb)
 #------------ конец----Меню Отримати допомогу-----
 
 #------------ Меню Допомогти проекту-----
@@ -428,87 +478,15 @@ def your_help_is_straightened (message):
 #🧦Інша допомога
 @bot.message_handler(func=lambda message: message.text == "🧦Інша допомога" or message.text == "🧦Other assistance")
 def other_help (message):
-    bot.send_chat_action(message.chat.id, 'typing')
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        var_legal_consultation = "🧦Other assistance"
         sent = bot.send_message(message.chat.id, text = text.eng_other_help_t, parse_mode='HTML')
     else:
+        var_legal_consultation = "🧦Інша допомога"
         sent = bot.send_message(message.chat.id, text = text.other_help_t, parse_mode='HTML')
-    bot.register_next_step_handler(sent, ignor_button_other_help)
+    bot.register_next_step_handler(sent, ignor_button, button_location=var_legal_consultation)
     menu_vozvrata_donats (message)
-#Обработка, чтобы не отправлялись кнопки в сообщениях
-def ignor_button_other_help(message):
-    if message.text == '/start':
-        language_selection(message)
-    elif message.text == '/menu':
-        main_menu(message)
-    elif message.text == '/share':
-        share(message)
-    #Назад с направления Допомгти проекту (первый символ анг. а)
-    elif message.text == '\U0001f519Нaзад':
-        main_menu_donats (message)
-    elif message.text == '\u23EAВ головне меню':
-        main_menu(message)
-    elif message.text == "\U0001f519Bаck":
-        main_menu_donats (message)
-    elif message.text == "\u23EATo main menu":
-        main_menu(message)
-    #Игнор всего, что не являеться текстом и меньше 5 симв. (в.т.ч. смайлы)
-    elif message.content_type != 'text' or len(message.text.split()) < 4:
-        other_help (message)
-    else:
-        other_help_excel(message)
-#Сохранние в эксельку
-def other_help_excel (message):
-    #Проверяет есть ли файл с имене proposal.xlsx
-    if not os.path.exists('proposal.xlsx'):
-        wb = Workbook()
-        ws = wb.active
-        # Добавляем первую строку с заголовками столбцов
-        ws.append(['yest_datetime', 'message.text', 'first_name', 'last_name', 'username', 'chat.id'])
-        # Сохраняем файл
-        wb.save('proposal.xlsx')
-    # Загружаем эксельку
-    wb = load_workbook('proposal.xlsx')
-    # Открываем
-    sheet = wb.active
-    # Находим последнюю строку с данными
-    last_row = sheet.max_row + 1
-    #Текущее время
-    yest_datetime = datetime.now()
-    # Добавляем новые данные в последнюю строку
-    sheet.cell(row=last_row, column=1, value=yest_datetime)
-    sheet.cell(row=last_row, column=2, value=message.text)
-    sheet.cell(row=last_row, column=3, value=message.from_user.first_name)
-    sheet.cell(row=last_row, column=4, value=message.from_user.last_name)
-    sheet.cell(row=last_row, column=5, value=message.from_user.username)
-    sheet.cell(row=last_row, column=6, value=message.chat.id)
-    # Сохраняем изменения в файл
-    try:
-        wb.save('proposal.xlsx')
-    except PermissionError:
-        logger.exception("Не вдалось зберегти файл:")
-        bot.send_chat_action(message.chat.id, 'typing')
-        chat_id = message.chat.id
-        if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-            bot.send_message(message.chat.id, text=text.eng_failed_to_send, parse_mode='HTML')
-            bot.send_message(message.chat.id, text=text.eng_button_driver)
-        else:
-            bot.send_message(message.chat.id, text=text.failed_to_send, parse_mode='HTML')
-            bot.send_message(message.chat.id, text=text.button_driver)
-        return
-    bot.send_chat_action(message.chat.id, 'typing')
-    chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_thank_contacting, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.eng_button_driver)
-    #Отправка в ТГ канал уведомления
-        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fHelp the project (proposal)")
-    else:
-        bot.send_message(message.chat.id, text=text.thank_contacting, parse_mode='HTML')
-        bot.send_message(message.chat.id, text=text.button_driver)
-    #Отправка в ТГ канал уведомления
-        bot.send_message('-1001801043894', "Вам повідомлення: \U0001f64fДопомогти проекту (proposal)")
 #------------ конец----Меню Допомогти проекту-----
 
 #------------Меню Освітні заходи
@@ -679,10 +657,7 @@ def achievements (message):
     bot.send_chat_action(message.chat.id, 'typing')
     photo_paths = text.img_invincibility
     media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    # media_group = []
-    # for path in photo_paths:
-    #     with open(path, "rb") as f:
-    #         media_group.append(telebot.types.InputMediaPhoto(f.read()))
+
     bot.send_media_group(message.chat.id, media=media_group)
     chat_id = message.chat.id
     if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
@@ -780,6 +755,7 @@ def word_processing(message):
     #Назад с направления Оримати допомогу (первый символ анг. H)
     elif message.text == "\U0001f519Hазад":
         main_help_project (message)
+    #Назад с направления Юридическая консультация - КТО ТЫ
     elif message.text == "\U0001f519Haзaд":
         button_back_main_help_project (message)
     #Назад с направления Допомгти проекту (первый символ анг. а) (а - русская)
