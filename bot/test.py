@@ -175,6 +175,7 @@ class SendMessage:
             bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: {user}\nТекст повідомелння: \n{self.message.text}")
         except apihelper.ApiException:
             logger.exception("Дуже велике повідомлення, не вдалось відправити його в ТГ канал")
+            bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: {user}\nТекст повідомлення не помістився, перегляньте Message.xlsx")
             return
     def process_request(self):
         self.check_file()
@@ -210,6 +211,7 @@ def ignor_button(message, button_location, button_who_are_you = None):
         help_zsy = SendMessage(message, button_location, button_who_are_you)
         help_zsy.process_request()
 #--конец отправки сообщений
+
 #------------ Меню Отримати допомогу-----
 #Меню Отримати допомогу
 @bot.message_handler(func=lambda message: message.text == "\U0001f198Отримати допомогу")
