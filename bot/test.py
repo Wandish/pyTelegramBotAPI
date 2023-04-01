@@ -63,8 +63,11 @@ def language_selection(message):
 def send_a_message(message):
     #Проверка на админа
     if message.chat.id in (759572442, 402411612):
-        for user in chatids_users:
-            bot.send_message(user, message.text[message.text.find(' '):])
+        try:
+            for user in chatids_users:
+                bot.send_message(user, message.text[message.text.find(' '):])
+        except apihelper.ApiTelegramException as e:
+            logger.error(e)
     #если не админ выбивает стандартную (непонимайку)
     else:
         bot.send_chat_action(message.chat.id, 'typing')
@@ -148,8 +151,8 @@ class SendMessage:
         sheet.cell(row=last_row, column=8, value=self.message.chat.id)
         try:
             wb.save('Message.xlsx')
-        except PermissionError:
-            logger.exception("Не вдалось зберегти файл:")
+        except PermissionError as e:
+            logger.error(e)
             bot.send_chat_action(self.message.chat.id, 'typing')
             chat_id = self.message.chat.id
             if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
@@ -173,8 +176,8 @@ class SendMessage:
             user = f"{self.message.chat.id}"
         try:
             bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: {user}\nТекст повідомелння: \n{self.message.text}")
-        except apihelper.ApiException:
-            logger.exception("Дуже велике повідомлення, не вдалось відправити його в ТГ канал")
+        except apihelper.ApiException as e:
+            logger.error(e)
             bot.send_message('-1001801043894', f"Графа: {self.button_location} \nВід користувача: {user}\nТекст повідомлення не помістився, перегляньте Message.xlsx")
             return
     def process_request(self):
