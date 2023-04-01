@@ -63,11 +63,11 @@ def language_selection(message):
 def send_a_message(message):
     #Проверка на админа
     if message.chat.id in (759572442, 402411612):
-        try:
-            for user in chatids_users:
+        for user in chatids_users:
+            try:
                 bot.send_message(user, message.text[message.text.find(' '):])
-        except apihelper.ApiTelegramException as e:
-            logger.error(e)
+            except apihelper.ApiTelegramException as e:
+                logger.error(e)
     #если не админ выбивает стандартную (непонимайку)
     else:
         bot.send_chat_action(message.chat.id, 'typing')
