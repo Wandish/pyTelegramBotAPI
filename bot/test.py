@@ -725,6 +725,8 @@ def achievements (message):
     else:
         bot.send_message(message.chat.id, text=text.assistance_kherson_region, parse_mode='HTML')
 
+    bot.send_message(message.chat.id, text="https://t.me/caringgeneration_in_ua/108")
+
     button_back_about_us (message)
 #Контент - Соц.сетях   
 @bot.message_handler(func=lambda message: message.text == "💬Ми в соціальних мережах" or message.text == "💬We are on social networks")
