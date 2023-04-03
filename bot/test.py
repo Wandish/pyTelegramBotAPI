@@ -67,7 +67,7 @@ def send_a_message(message):
             try:
                 bot.send_message(user, message.text[message.text.find(' '):])
             except apihelper.ApiTelegramException as e:
-                logger.error(e)
+                logger.error(f'{e}: {user}')
     #если не админ выбивает стандартную (непонимайку)
     else:
         bot.send_chat_action(message.chat.id, 'typing')
