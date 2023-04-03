@@ -3,7 +3,8 @@ Ctrl + левая мышь - посомтреть код типа данных
 TAB + Chrift - табуляция
 Chrift + TAB - убрать табуляцию
 CTRL + Y - отмета отмены
-CTRL + Chrift + P - Fold All = Скрыть все функции
+CTRL + Chrift + P - Fold All = Свернуть все 
+CTRL + Chrift + P - Unfold = Развернуть все 
 ALT + колесико мыши = быстрое перемещение
 
 
