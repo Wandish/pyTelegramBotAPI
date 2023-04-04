@@ -564,16 +564,16 @@ eng_social_network = '''Social network:'''
 
 activities_organization = '''https://t.me/caringgeneration_in_ua/137
 
-Діяльність організації спрямована на підтримку Збройних сил України, осіб, які постраждали від війни та молоді. 
+🤗<b>Діяльність організації спрямована на підтримку Збройних сил України, осіб, які постраждали від війни та молоді. 
 
 За час діяльності доставлено у зону бойових дій більше 35 тонн гуманітарної допомоги. 
 
-Організація регулярно надає амуніцію, інші необхідні речі та правові консультації військовослужбовцям та членам їх сімей.'''
+Організація регулярно надає амуніцію, інші необхідні речі та правові консультації військовослужбовцям та членам їх сімей.</b>'''
 
 eng_activities_organization = '''https://t.me/caringgeneration_in_ua/137
 
-The organization's activities are aimed at supporting the Armed Forces of Ukraine, people affected by the war and youth.
+🤗<b>The activities of the organization are aimed at supporting the Armed Forces of Ukraine, people affected by the war and youth.
 
 During the activity, more than 35 tons of humanitarian aid were delivered to the combat zone.
 
-The organization regularly provides ammunition, other necessary items and legal advice to servicemen and their families.'''
+The organization regularly provides ammunition, other necessary items and legal advice to servicemen and their family members.</b>'''

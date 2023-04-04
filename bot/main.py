@@ -667,65 +667,65 @@ def team (message):
 @bot.message_handler(func=lambda message: message.text == "🥇Наші досягнення" or message.text == "🥇Our achievements")
 def achievements (message):
     bot.send_chat_action(message.chat.id, 'typing')
-    photo_paths = text.img_invincibility
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # photo_paths = text.img_invincibility
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
 
-    bot.send_media_group(message.chat.id, media=media_group)
-    chat_id = message.chat.id
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_help_points_of_invincibility, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.help_points_of_invincibility, parse_mode='HTML')
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # chat_id = message.chat.id
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #     bot.send_message(message.chat.id, text=text.eng_help_points_of_invincibility, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.help_points_of_invincibility, parse_mode='HTML')
 
-    photo_paths = text.img_donetsk
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    bot.send_media_group(message.chat.id, media=media_group)
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_trip_to_donetsk_region, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.trip_to_donetsk_region, parse_mode='HTML')
+    # photo_paths = text.img_donetsk
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #     bot.send_message(message.chat.id, text=text.eng_trip_to_donetsk_region, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.trip_to_donetsk_region, parse_mode='HTML')
 
-    photo_paths = text.img_herson
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    bot.send_media_group(message.chat.id, media=media_group)
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_herson, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.herson, parse_mode='HTML')
+    # photo_paths = text.img_herson
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #     bot.send_message(message.chat.id, text=text.eng_herson, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.herson, parse_mode='HTML')
 
-    photo_paths = text.img_rana
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    bot.send_media_group(message.chat.id, media=media_group)
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_rana, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.rana, parse_mode='HTML')
+    # photo_paths = text.img_rana
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #     bot.send_message(message.chat.id, text=text.eng_rana, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.rana, parse_mode='HTML')
 
-    photo_paths = text.img_blessing_for_people
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    bot.send_media_group(message.chat.id, media=media_group)
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_blessing_for_people, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.blessing_for_people, parse_mode='HTML')
+    # photo_paths = text.img_blessing_for_people
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #     bot.send_message(message.chat.id, text=text.eng_blessing_for_people, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.blessing_for_people, parse_mode='HTML')
 
-    photo_paths = text.img_help_to_the_needy
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    bot.send_media_group(message.chat.id, media=media_group)
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-      bot.send_message(message.chat.id, text=text.eng_help_to_the_needy, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.help_to_the_needy, parse_mode='HTML')
+    # photo_paths = text.img_help_to_the_needy
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #   bot.send_message(message.chat.id, text=text.eng_help_to_the_needy, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.help_to_the_needy, parse_mode='HTML')
         
-    photo_paths = text.img_assistance_kherson_region
-    media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
-    bot.send_media_group(message.chat.id, media=media_group)
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
-        bot.send_message(message.chat.id, text=text.eng_assistance_kherson_region, parse_mode='HTML')
-    else:
-        bot.send_message(message.chat.id, text=text.assistance_kherson_region, parse_mode='HTML')
+    # photo_paths = text.img_assistance_kherson_region
+    # media_group = [types.InputMediaPhoto(open(path, "rb").read()) for path in photo_paths]
+    # bot.send_media_group(message.chat.id, media=media_group)
+    # if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    #     bot.send_message(message.chat.id, text=text.eng_assistance_kherson_region, parse_mode='HTML')
+    # else:
+    #     bot.send_message(message.chat.id, text=text.assistance_kherson_region, parse_mode='HTML')
 
-    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+    if message.chat.id in user_languages and user_languages[message.chat.id] == '🇬🇧English':
         bot.send_message(message.chat.id, text=text.eng_activities_organization, parse_mode='HTML')
     else:
         bot.send_message(message.chat.id, text=text.activities_organization, parse_mode='HTML')
