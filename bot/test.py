@@ -725,7 +725,10 @@ def achievements (message):
     else:
         bot.send_message(message.chat.id, text=text.assistance_kherson_region, parse_mode='HTML')
 
-    bot.send_message(message.chat.id, text="https://t.me/caringgeneration_in_ua/108")
+    if chat_id in user_languages and user_languages[chat_id] == '🇬🇧English':
+        bot.send_message(message.chat.id, text=text.eng_activities_organization, parse_mode='HTML')
+    else:
+        bot.send_message(message.chat.id, text=text.activities_organization, parse_mode='HTML')
 
     button_back_about_us (message)
 #Контент - Соц.сетях   
@@ -792,8 +795,12 @@ def word_processing(message):
         photo = open('image/nezrozymiv.jpg', 'rb')
         bot.send_photo(chat_id, photo)
 
-logger.info("---Запуск---")
-try:
-    bot.infinity_polling()
-except Exception as e:
-    logging.exception(e)
+def main ():
+    logger.info("---Запуск---")
+    try:
+        bot.infinity_polling()
+    except Exception as e:
+        logging.exception(e)
+
+if __name__ == '__main__':
+    main()
